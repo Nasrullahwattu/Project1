@@ -1,0 +1,467 @@
+
+/* 1. Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #FFFFFF;
+    color: #252033;
+    line-height: 1.6;
+    padding-top: 70px;
+}
+
+section {
+    padding: 70px 10%;
+}
+
+
+/* 2. Fixed Navbar */
+.header {
+    background-color: #FFFFFF;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 2px solid #6C3CE9;
+    box-shadow: 0 2px 10px rgba(108, 60, 233, 0.08);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 10%;
+}
+
+.logo {
+    color: #6C3CE9;
+    font-size: 24px;
+}
+
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+.nav-link {
+    color: #252033;
+    text-decoration: none;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+    color: #6C3CE9;
+}
+
+
+/* CSS Hamburger Icon */
+#menu-toggle {
+    display: none;
+}
+
+.menu-icon {
+    display: none;
+    cursor: pointer;
+}
+
+.menu-icon span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background-color: #6C3CE9;
+    margin: 6px 0;
+    border-radius: 3px;
+    transition: 0.3s;
+}
+
+
+/* 3. Hero Section */
+.hero {
+    min-height: 85vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    background-color: #F3EEFF;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.hero-title {
+    font-size: 42px;
+    margin-bottom: 25px;
+    color: #252033;
+}
+
+.hero-subtitle {
+    color: #6C3CE9;
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.hero-description {
+    color: #625D70;
+    font-size: 17px;
+    margin-bottom: 25px;
+}
+
+.hero-button {
+    display: inline-block;
+    background-color: #6C3CE9;
+    color: #FFFFFF;
+    padding: 12px 28px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.hero-button:hover {
+    background-color: #5125B8;
+    transform: translateY(-3px);
+}
+
+.hero-image img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;width: fit-content;
+    object-position: center;
+    border: 4px none #6C3CE9;
+}
+
+
+/* 4. About Section */
+.about {
+    text-align: center;
+    background-color: #FFFFFF;
+}
+
+.section-title {
+    color: #6C3CE9;
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.about-description {
+    max-width: 800px;
+    margin: auto;
+    color: #625D70;
+    font-size: 17px;
+}
+
+
+/* 5. Skills Section */
+.skills {
+    text-align: center;
+    background-color: #F3EEFF;
+}
+
+.skills-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    list-style: none;
+}
+
+.skill-item {
+    background-color: #FFFFFF;
+    color: #6C3CE9;
+    padding: 12px 25px;
+    border: 1px solid #6C3CE9;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.skill-item:hover {
+    background-color: #6C3CE9;
+    color: #FFFFFF;
+}
+
+
+/* 6. Projects Section */
+.projects {
+    background-color: #FFFFFF;
+    text-align: center;
+}
+
+.project-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.project-card {
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #E5DDFB;
+    box-shadow: 0 4px 15px rgba(108, 60, 233, 0.06);
+    transition: 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    border-color: #6C3CE9;
+    box-shadow: 0 8px 20px rgba(108, 60, 233, 0.15);
+}
+
+.project-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 7px;
+    margin-bottom: 15px;
+}
+
+.project-title {
+    color: #6C3CE9;
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+
+.project-description {
+    color: #625D70;
+    margin-bottom: 15px;
+}
+
+.project-link {
+    display: inline-block;
+    color: #6C3CE9;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.project-link:hover {
+    color: #5125B8;
+}
+
+
+/* 7. Contact Form Section */
+.contact {
+    background-color: #F3EEFF;
+    text-align: center;
+}
+
+.contact-description {
+    color: #625D70;
+    margin-bottom: 25px;
+}
+
+.contact-form {
+    max-width: 550px;
+    margin: auto;
+    padding: 30px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    text-align: left;
+    box-shadow: 0 5px 20px rgba(108, 60, 233, 0.08);
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #252033;
+    font-weight: bold;
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    background-color: #F8F7FC;
+    color: #252033;
+    border: 1px solid #D8D0EB;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: #6C3CE9;
+    box-shadow: 0 0 5px rgba(108, 60, 233, 0.2);
+}
+
+.form-textarea {
+    resize: vertical;
+}
+
+.form-button {
+    width: 100%;
+    padding: 13px;
+    background-color: #6C3CE9;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.form-button:hover {
+    background-color: #5125B8;
+}
+
+
+/* 8. Footer Section */
+.footer {
+    background-color: #252033;
+    text-align: center;
+    padding: 22px;
+    border-top: 2px solid #6C3CE9;
+}
+
+.footer-text {
+    color: #FFFFFF;
+    font-size: 14px;
+}
+
+
+/* 9. Mobile Responsive Design */
+@media (max-width: 768px) {
+
+    body {
+        padding-top: 65px;
+    }
+
+    section {
+        padding: 50px 6%;
+    }
+
+    /* Mobile Navbar */
+    .navbar {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 15px 6%;
+        position: relative;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+
+    /* Show Hamburger Icon */
+    .menu-icon {
+        display: block;
+    }
+
+    /* Mobile Dropdown Menu */
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        background-color: #FFFFFF;
+        box-shadow: 0 5px 10px rgba(108, 60, 233, 0.12);
+        padding: 10px 0;
+    }
+
+    /* Open Menu When Checkbox Is Checked */
+    #menu-toggle:checked ~ .nav-links {
+        display: flex;
+    }
+
+    /* Hamburger Animation */
+    #menu-toggle:checked + .menu-icon span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+
+    #menu-toggle:checked + .menu-icon span:nth-child(2) {
+        opacity: 0;
+    }
+
+    #menu-toggle:checked + .menu-icon span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-link {
+        display: block;
+        padding: 12px;
+        font-size: 15px;
+    }
+
+    .nav-link:hover {
+        background-color: #F3EEFF;
+    }
+
+    /* Hero */
+    .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding-top: 50px;
+    }
+
+    .hero-title {
+        font-size: 30px;
+    }
+
+    .hero-subtitle {
+        font-size: 23px;
+    }
+
+    .hero-image img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .section-title {
+        font-size: 27px;
+    }
+
+    /* Projects */
+    .project-container {
+        grid-template-columns: 1fr;
+    }
+
+    .project-image {
+        height: 180px;
+    }
+
+    /* Contact */
+    .contact-form {
+        padding: 20px;
+    }
+}
+
+
+/* 10. Smaller Mobile Screens */
+@media (max-width: 400px) {
+
+    .logo {
+        font-size: 19px;
+    }
+
+    .hero-title {
+        font-size: 26px;
+    }
+
+    .hero-subtitle {
+        font-size: 20px;
+    }
+}
