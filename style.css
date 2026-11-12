@@ -1,5 +1,19 @@
 
-/* 1. Global Styles */
+/* =====================================================
+   1. GLOBAL STYLES & ANIMATION VARIABLES
+===================================================== */
+
+:root {
+    --purple: #6C3CE9;
+    --dark-purple: #5125B8;
+    --light-purple: #F3EEFF;
+    --white: #FFFFFF;
+    --dark: #252033;
+    --gray: #625D70;
+
+    --purple-glow: 0 0 20px rgba(108, 60, 233, 0.35);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -8,28 +22,185 @@
     scroll-behavior: smooth;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    background-color: #FFFFFF;
-    color: #252033;
+    background-color: var(--white);
+    color: var(--dark);
     line-height: 1.6;
     padding-top: 70px;
+    overflow-x: hidden;
+
+    animation: websiteOpen 1.2s ease both;
 }
+
+/* Website Opening Animation */
+
+@keyframes websiteOpen {
+    from {
+        opacity: 0;
+        transform: scale(0.97);
+        filter: blur(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+}
+
+/* Custom CSS Cursor */
+
+body,
+a,
+button,
+input,
+textarea,
+label {
+    cursor: crosshair;
+}
+
+a,
+button,
+label,
+input,
+textarea {
+    cursor: pointer;
+}
+
+input,
+textarea {
+    cursor: text;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--purple);
+    outline-offset: 4px;
+}
+
+/* Custom Scrollbar */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--light-purple);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        var(--purple),
+        var(--dark-purple)
+    );
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--dark-purple);
+}
+
+/* Text Selection */
+
+::selection {
+    background: var(--purple);
+    color: white;
+}
+
+/* =====================================================
+   2. GENERAL SECTION ANIMATIONS
+===================================================== */
 
 section {
     padding: 70px 10%;
+    position: relative;
 }
 
+/* Initial Entrance for Main Sections */
 
-/* 2. Fixed Navbar */
+.about,
+.skills,
+.projects,
+.contact {
+    animation: sectionEntrance 1s ease both;
+}
+
+@keyframes sectionEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animated Section Headings */
+
+.section-title {
+    position: relative;
+    display: table;
+    margin: 0 auto 30px;
+    color: var(--purple);
+    font-size: 32px;
+    text-align: center;
+}
+
+.section-title::after {
+    content: "";
+    display: block;
+    width: 55px;
+    height: 3px;
+    background: linear-gradient(
+        90deg,
+        var(--purple),
+        #B79AFF
+    );
+    margin: 10px auto 0;
+    border-radius: 10px;
+    transition: width 0.4s ease;
+}
+
+.section-title:hover::after {
+    width: 100%;
+}
+
+/* =====================================================
+   3. FIXED NAVBAR ANIMATIONS
+===================================================== */
+
 .header {
-    background-color: #FFFFFF;
+    background-color: var(--white);
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
-    border-bottom: 2px solid #6C3CE9;
+    border-bottom: 2px solid var(--purple);
+
     box-shadow: 0 2px 10px rgba(108, 60, 233, 0.08);
+
+    animation: navbarEntrance 0.8s ease both;
+}
+
+@keyframes navbarEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .navbar {
@@ -40,11 +211,31 @@ section {
 }
 
 .logo {
-    color: #6C3CE9;
+    color: var(--purple);
     font-size: 24px;
+    font-weight: bold;
+
+    transition: 0.4s ease;
+    animation: logoGlow 3s ease-in-out infinite alternate;
+}
+
+.logo:hover {
+    transform: scale(1.08);
+    text-shadow: 0 0 15px rgba(108, 60, 233, 0.5);
+}
+
+@keyframes logoGlow {
+    from {
+        text-shadow: 0 0 2px rgba(108, 60, 233, 0.1);
+    }
+
+    to {
+        text-shadow: 0 0 12px rgba(108, 60, 233, 0.5);
+    }
 }
 
 /* Navigation Links */
+
 .nav-links {
     display: flex;
     list-style: none;
@@ -52,18 +243,36 @@ section {
 }
 
 .nav-link {
-    color: #252033;
+    color: var(--dark);
     text-decoration: none;
     font-size: 15px;
-    transition: 0.3s;
+    position: relative;
+    transition: 0.3s ease;
+}
+
+/* Animated Underline */
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -6px;
+    left: 0;
+    background: var(--purple);
+    transition: width 0.35s ease;
 }
 
 .nav-link:hover {
-    color: #6C3CE9;
+    color: var(--purple);
 }
 
+.nav-link:hover::after {
+    width: 100%;
+}
 
 /* CSS Hamburger Icon */
+
 #menu-toggle {
     display: none;
 }
@@ -77,96 +286,280 @@ section {
     display: block;
     width: 28px;
     height: 3px;
-    background-color: #6C3CE9;
+    background-color: var(--purple);
     margin: 6px 0;
     border-radius: 3px;
-    transition: 0.3s;
+    transition: 0.35s ease;
 }
 
+/* =====================================================
+   4. HERO SECTION ANIMATIONS
+===================================================== */
 
-/* 3. Hero Section */
 .hero {
     min-height: 85vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 40px;
-    background-color: #F3EEFF;
+    background-color: var(--light-purple);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative Background Glow */
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    background: rgba(108, 60, 233, 0.09);
+    border-radius: 50%;
+    top: -80px;
+    left: -80px;
+    filter: blur(5px);
+    animation: backgroundFloat 7s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: rgba(108, 60, 233, 0.08);
+    border-radius: 50%;
+    bottom: -80px;
+    right: -50px;
+    animation: backgroundFloat 6s ease-in-out infinite alternate-reverse;
+    pointer-events: none;
+}
+
+@keyframes backgroundFloat {
+    from {
+        transform: translate(0, 0);
+    }
+
+    to {
+        transform: translate(35px, 30px);
+    }
 }
 
 .hero-content {
     max-width: 600px;
+    position: relative;
+    z-index: 1;
 }
 
 .hero-title {
     font-size: 42px;
     margin-bottom: 25px;
-    color: #252033;
+    color: var(--dark);
+
+    animation: textSlideIn 1s ease both;
 }
 
 .hero-subtitle {
-    color: #6C3CE9;
+    color: var(--purple);
     font-size: 28px;
     margin-bottom: 15px;
+
+    animation: textSlideIn 1.2s ease both;
 }
 
 .hero-description {
-    color: #625D70;
+    color: var(--gray);
     font-size: 17px;
     margin-bottom: 25px;
+
+    animation: textSlideIn 1.4s ease both;
 }
+
+@keyframes textSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-45px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Hero Button */
 
 .hero-button {
     display: inline-block;
-    background-color: #6C3CE9;
-    color: #FFFFFF;
+    background-color: var(--purple);
+    color: var(--white);
     padding: 12px 28px;
     border-radius: 5px;
     text-decoration: none;
     font-weight: bold;
-    transition: 0.3s;
+    transition: 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    animation: buttonEntrance 1.6s ease both;
+}
+
+@keyframes buttonEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.4),
+        transparent
+    );
+    transition: 0.6s;
+    z-index: -1;
+}
+
+.hero-button:hover::before {
+    left: 120%;
 }
 
 .hero-button:hover {
-    background-color: #5125B8;
-    transform: translateY(-3px);
+    background-color: var(--dark-purple);
+    transform: translateY(-5px);
+    box-shadow: var(--purple-glow);
+}
+
+/* =====================================================
+   5. PROFILE PHOTO CINEMATIC ANIMATIONS
+===================================================== */
+
+.hero-image {
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+}
+
+/* Rotating Gradient Ring */
+
+.hero-image::before {
+    content: "";
+    position: absolute;
+    inset: -10px;
+    border-radius: 50%;
+
+    background: conic-gradient(
+        var(--purple),
+        #B99AFF,
+        white,
+        var(--purple)
+    );
+
+    animation: rotateRing 5s linear infinite;
+    z-index: -1;
+}
+
+/* Soft Glow */
+
+.hero-image::after {
+    content: "";
+    position: absolute;
+    inset: -15px;
+    border-radius: 50%;
+    background: rgba(108, 60, 233, 0.25);
+    filter: blur(20px);
+    z-index: -2;
+    animation: photoGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes rotateRing {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes photoGlow {
+    from {
+        opacity: 0.4;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.08);
+    }
 }
 
 .hero-image img {
+    display: block;
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    object-fit: cover;width: fit-content;
+    object-fit: cover;
     object-position: center;
-    border: 4px none #6C3CE9;
+    border: 5px solid white;
+
+    animation: profileFloat 4s ease-in-out infinite;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
+@keyframes profileFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
 
-/* 4. About Section */
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+.hero-image img:hover {
+    transform: scale(1.07);
+    box-shadow: 0 0 35px rgba(108, 60, 233, 0.5);
+}
+
+/* =====================================================
+   6. ABOUT SECTION
+===================================================== */
+
 .about {
     text-align: center;
-    background-color: #FFFFFF;
-}
-
-.section-title {
-    color: #6C3CE9;
-    font-size: 32px;
-    text-align: center;
-    margin-bottom: 30px;
+    background-color: var(--white);
 }
 
 .about-description {
     max-width: 800px;
     margin: auto;
-    color: #625D70;
+    color: var(--gray);
     font-size: 17px;
+    transition: 0.4s ease;
 }
 
+.about-description:hover {
+    color: var(--dark);
+}
 
-/* 5. Skills Section */
+/* =====================================================
+   7. SKILLS SECTION ANIMATIONS
+===================================================== */
+
 .skills {
     text-align: center;
-    background-color: #F3EEFF;
+    background-color: var(--light-purple);
 }
 
 .skills-list {
@@ -178,24 +571,42 @@ section {
 }
 
 .skill-item {
-    background-color: #FFFFFF;
-    color: #6C3CE9;
+    background-color: var(--white);
+    color: var(--purple);
     padding: 12px 25px;
-    border: 1px solid #6C3CE9;
+    border: 1px solid var(--purple);
     border-radius: 25px;
     font-weight: bold;
-    transition: 0.3s;
+
+    transition: all 0.35s ease;
+    animation: skillEntrance 0.8s ease both;
+}
+
+@keyframes skillEntrance {
+    from {
+        opacity: 0;
+        transform: scale(0.7) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
 }
 
 .skill-item:hover {
-    background-color: #6C3CE9;
-    color: #FFFFFF;
+    background-color: var(--purple);
+    color: var(--white);
+    transform: translateY(-8px) scale(1.08);
+    box-shadow: var(--purple-glow);
 }
 
+/* =====================================================
+   8. PROJECT SECTION ANIMATIONS
+===================================================== */
 
-/* 6. Projects Section */
 .projects {
-    background-color: #FFFFFF;
+    background-color: var(--white);
     text-align: center;
 }
 
@@ -206,19 +617,25 @@ section {
 }
 
 .project-card {
-    background-color: #FFFFFF;
+    background-color: var(--white);
     padding: 20px;
     border-radius: 10px;
     border: 1px solid #E5DDFB;
+
     box-shadow: 0 4px 15px rgba(108, 60, 233, 0.06);
-    transition: 0.3s;
+
+    transition: all 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+    overflow: hidden;
 }
 
 .project-card:hover {
-    transform: translateY(-8px);
-    border-color: #6C3CE9;
-    box-shadow: 0 8px 20px rgba(108, 60, 233, 0.15);
+    transform: translateY(-12px) scale(1.02);
+    border-color: var(--purple);
+
+    box-shadow: 0 15px 35px rgba(108, 60, 233, 0.2);
 }
+
+/* Project Image Zoom */
 
 .project-image {
     width: 100%;
@@ -226,39 +643,54 @@ section {
     object-fit: cover;
     border-radius: 7px;
     margin-bottom: 15px;
+
+    transition: transform 0.6s ease;
+}
+
+.project-card:hover .project-image {
+    transform: scale(1.06);
 }
 
 .project-title {
-    color: #6C3CE9;
+    color: var(--purple);
     font-size: 21px;
     margin-bottom: 10px;
+    transition: 0.3s;
+}
+
+.project-card:hover .project-title {
+    color: var(--dark-purple);
 }
 
 .project-description {
-    color: #625D70;
+    color: var(--gray);
     margin-bottom: 15px;
 }
 
 .project-link {
     display: inline-block;
-    color: #6C3CE9;
+    color: var(--purple);
     text-decoration: none;
     font-weight: bold;
+    transition: 0.3s;
 }
 
 .project-link:hover {
-    color: #5125B8;
+    color: var(--dark-purple);
+    transform: translateX(5px);
 }
 
+/* =====================================================
+   9. CONTACT FORM ANIMATIONS
+===================================================== */
 
-/* 7. Contact Form Section */
 .contact {
-    background-color: #F3EEFF;
+    background-color: var(--light-purple);
     text-align: center;
 }
 
 .contact-description {
-    color: #625D70;
+    color: var(--gray);
     margin-bottom: 25px;
 }
 
@@ -266,16 +698,23 @@ section {
     max-width: 550px;
     margin: auto;
     padding: 30px;
-    background-color: #FFFFFF;
+    background-color: var(--white);
     border-radius: 10px;
     text-align: left;
+
     box-shadow: 0 5px 20px rgba(108, 60, 233, 0.08);
+    transition: 0.4s ease;
+}
+
+.contact-form:hover {
+    box-shadow: 0 12px 35px rgba(108, 60, 233, 0.16);
+    transform: translateY(-5px);
 }
 
 .form-label {
     display: block;
     margin-bottom: 8px;
-    color: #252033;
+    color: var(--dark);
     font-weight: bold;
 }
 
@@ -285,56 +724,108 @@ section {
     padding: 12px;
     margin-bottom: 20px;
     background-color: #F8F7FC;
-    color: #252033;
+    color: var(--dark);
+
     border: 1px solid #D8D0EB;
     border-radius: 5px;
     font-size: 15px;
+
+    transition: all 0.3s ease;
 }
 
 .form-input:focus,
 .form-textarea:focus {
     outline: none;
-    border-color: #6C3CE9;
-    box-shadow: 0 0 5px rgba(108, 60, 233, 0.2);
+    border-color: var(--purple);
+
+    box-shadow: 0 0 12px rgba(108, 60, 233, 0.2);
+    transform: scale(1.01);
 }
 
 .form-textarea {
     resize: vertical;
 }
 
+/* Contact Submit Button */
+
 .form-button {
     width: 100%;
     padding: 13px;
-    background-color: #6C3CE9;
-    color: #FFFFFF;
+    background-color: var(--purple);
+    color: var(--white);
+
     border: none;
     border-radius: 5px;
     font-size: 16px;
     font-weight: bold;
+
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.35s ease;
 }
 
 .form-button:hover {
-    background-color: #5125B8;
+    background-color: var(--dark-purple);
+    transform: translateY(-4px);
+    box-shadow: var(--purple-glow);
 }
 
+.form-button:active {
+    transform: scale(0.97);
+}
 
-/* 8. Footer Section */
+/* =====================================================
+   10. FOOTER ANIMATIONS
+===================================================== */
+
 .footer {
-    background-color: #252033;
+    background-color: var(--dark);
     text-align: center;
     padding: 22px;
-    border-top: 2px solid #6C3CE9;
+    border-top: 2px solid var(--purple);
+
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        white,
+        var(--purple),
+        transparent
+    );
+
+    animation: footerLight 4s linear infinite;
+}
+
+@keyframes footerLight {
+    to {
+        left: 100%;
+    }
 }
 
 .footer-text {
-    color: #FFFFFF;
+    color: var(--white);
     font-size: 14px;
+    transition: 0.3s;
 }
 
+.footer-text:hover {
+    color: #B99AFF;
+}
 
-/* 9. Mobile Responsive Design */
+/* =====================================================
+   11. MOBILE RESPONSIVE DESIGN
+===================================================== */
+
 @media (max-width: 768px) {
 
     body {
@@ -346,6 +837,7 @@ section {
     }
 
     /* Mobile Navbar */
+
     .navbar {
         flex-direction: row;
         justify-content: space-between;
@@ -358,37 +850,57 @@ section {
     }
 
     /* Show Hamburger Icon */
+
     .menu-icon {
         display: block;
     }
 
     /* Mobile Dropdown Menu */
+
     .nav-links {
         display: none;
         position: absolute;
         top: 100%;
         left: 0;
         width: 100%;
+
         flex-direction: column;
         align-items: center;
         gap: 0;
-        background-color: #FFFFFF;
+
+        background-color: var(--white);
         box-shadow: 0 5px 10px rgba(108, 60, 233, 0.12);
         padding: 10px 0;
     }
 
-    /* Open Menu When Checkbox Is Checked */
+    /* Open Menu */
+
     #menu-toggle:checked ~ .nav-links {
         display: flex;
+        animation: menuOpen 0.35s ease both;
+    }
+
+    @keyframes menuOpen {
+        from {
+            opacity: 0;
+            transform: translateY(-12px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     /* Hamburger Animation */
+
     #menu-toggle:checked + .menu-icon span:nth-child(1) {
         transform: translateY(9px) rotate(45deg);
     }
 
     #menu-toggle:checked + .menu-icon span:nth-child(2) {
         opacity: 0;
+        transform: translateX(-15px);
     }
 
     #menu-toggle:checked + .menu-icon span:nth-child(3) {
@@ -407,10 +919,11 @@ section {
     }
 
     .nav-link:hover {
-        background-color: #F3EEFF;
+        background-color: var(--light-purple);
     }
 
-    /* Hero */
+    /* Mobile Hero */
+
     .hero {
         flex-direction: column-reverse;
         text-align: center;
@@ -434,7 +947,8 @@ section {
         font-size: 27px;
     }
 
-    /* Projects */
+    /* Mobile Projects */
+
     .project-container {
         grid-template-columns: 1fr;
     }
@@ -443,14 +957,17 @@ section {
         height: 180px;
     }
 
-    /* Contact */
+    /* Mobile Contact */
+
     .contact-form {
         padding: 20px;
     }
 }
 
+/* =====================================================
+   12. SMALLER MOBILE SCREENS
+===================================================== */
 
-/* 10. Smaller Mobile Screens */
 @media (max-width: 400px) {
 
     .logo {
@@ -463,5 +980,50 @@ section {
 
     .hero-subtitle {
         font-size: 20px;
+    }
+}
+
+/* =====================================================
+   13. SCROLL-TRIGGERED ANIMATIONS
+   Supported in modern browsers
+===================================================== */
+
+@supports (animation-timeline: view()) {
+
+    .about-description,
+    .skill-item,
+    .project-card,
+    .contact-form {
+        animation: scrollReveal linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 45%;
+    }
+
+    @keyframes scrollReveal {
+        from {
+            opacity: 0;
+            transform: translateY(45px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+/* =====================================================
+   14. REDUCED MOTION ACCESSIBILITY
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
     }
 }
