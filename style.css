@@ -1766,3 +1766,555 @@ button {
         cursor: auto !important;
     }
 }
+
+/* ==========================================
+   PREMIUM PORTFOLIO COLOUR UPGRADE
+   MIDNIGHT NAVY + ELECTRIC ORANGE
+========================================== */
+
+:root {
+    /* Main colour palette */
+    --purple: #FF783F;
+    --dark-purple: #E85D2A;
+    --light-purple: #1C2942;
+
+    --orange: #FF783F;
+    --orange-soft: #FF985F;
+    --orange-pale: #FFC38B;
+
+    --dark: #0B1020;
+    --bg: #0B1020;
+    --bg-2: #111A2D;
+
+    --white: #F8FAFF;
+    --text: #F8FAFF;
+    --gray: #B7C2D8;
+    --muted: #A8B3CA;
+
+    --card: rgba(27, 40, 65, 0.75);
+    --border: rgba(255, 195, 139, 0.16);
+
+    --purple-glow:
+        0 0 30px rgba(255, 120, 63, 0.25);
+}
+
+/* Main website background */
+body {
+    background:
+        radial-gradient(
+            circle at 10% 5%,
+            rgba(255, 120, 63, 0.08),
+            transparent 30%
+        ),
+        #0B1020 !important;
+
+    color: #F8FAFF;
+}
+
+/* Navbar */
+.nav,
+.navbar,
+.header {
+    background: rgba(11, 16, 32, 0.88) !important;
+    border-bottom: 1px solid rgba(255, 195, 139, 0.15);
+    backdrop-filter: blur(20px);
+}
+
+/* Navigation links */
+.nav a,
+.navbar a,
+.header a,
+.nav-link {
+    color: #D8DEEB;
+    transition: color .3s ease;
+}
+
+.nav a:hover,
+.navbar a:hover,
+.header a:hover,
+.nav-link:hover {
+    color: #FF985F !important;
+}
+
+/* Hero section */
+.hero {
+    background:
+        radial-gradient(
+            circle at 15% 25%,
+            rgba(255, 120, 63, 0.13),
+            transparent 40%
+        ),
+        radial-gradient(
+            circle at 85% 75%,
+            rgba(77, 105, 170, 0.12),
+            transparent 40%
+        ),
+        #0B1020 !important;
+}
+
+/* Hero headings */
+.hero-title,
+.hero h1 {
+    color: #F8FAFF;
+}
+
+.hero-title span,
+.hero h1 span,
+.hero-subtitle {
+    color: #FF985F !important;
+}
+
+/* Section backgrounds */
+.about,
+.skills,
+.projects,
+.contact {
+    background-color: #111A2D !important;
+}
+
+.about:nth-of-type(even),
+.projects:nth-of-type(even) {
+    background-color: #0D1527 !important;
+}
+
+/* Section headings */
+.section-title {
+    color: #FF985F !important;
+}
+
+.section-title::after {
+    background: linear-gradient(
+        90deg,
+        #FF783F,
+        #FFC38B
+    ) !important;
+}
+
+/* Paragraphs */
+.about-description,
+.about-text p,
+.hero-description,
+.skill-item p,
+.project-body p,
+.contact-box p {
+    color: #B7C2D8;
+}
+
+/* Skill cards */
+.skill-item {
+    background: linear-gradient(
+        145deg,
+        #1B2942,
+        #121D32
+    ) !important;
+
+    border: 1px solid rgba(255, 195, 139, 0.15);
+    color: #FFC38B;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+.skill-item:hover {
+    border-color: #FF783F;
+    box-shadow: 0 15px 35px rgba(255, 120, 63, 0.15);
+}
+
+/* Project cards */
+.project-card {
+    background: linear-gradient(
+        145deg,
+        #1B2942,
+        #121D32
+    ) !important;
+
+    border: 1px solid rgba(255, 195, 139, 0.14);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+}
+
+.project-card:hover {
+    border-color: #FF783F;
+    box-shadow: 0 20px 45px rgba(255, 120, 63, 0.17);
+}
+
+/* Project image backgrounds */
+.project-thumb,
+.project-image {
+    background: linear-gradient(
+        135deg,
+        #273957,
+        #17243C
+    ) !important;
+}
+
+/* Buttons */
+button,
+.hero-button,
+.btn,
+.contact button {
+    background: linear-gradient(
+        135deg,
+        #FF783F,
+        #E85D2A
+    );
+
+    color: #FFFFFF;
+    border: none;
+    transition: all .35s ease;
+}
+
+button:hover,
+.hero-button:hover,
+.btn:hover,
+.contact button:hover {
+    background: linear-gradient(
+        135deg,
+        #FFC38B,
+        #FF783F
+    );
+
+    color: #151E33;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(255, 120, 63, 0.3);
+}
+
+/* Contact section */
+.contact-box,
+.contact-form {
+    background: linear-gradient(
+        145deg,
+        rgba(255, 120, 63, 0.12),
+        rgba(27, 41, 66, 0.85)
+    ) !important;
+
+    border: 1px solid rgba(255, 195, 139, 0.22);
+    border-radius: 24px;
+}
+
+/* Form fields */
+input,
+textarea,
+select {
+    background: #101A2E !important;
+    color: #F8FAFF !important;
+    border: 1px solid rgba(255, 195, 139, 0.2) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #8996AF;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #FF783F !important;
+    box-shadow: 0 0 15px rgba(255, 120, 63, 0.15);
+    outline: none;
+}
+
+/* Footer */
+footer,
+.footer {
+    background: #080D19 !important;
+    color: #B7C2D8;
+    border-top: 1px solid rgba(255, 195, 139, 0.17);
+}
+
+/* Text selection */
+::selection {
+    background: #FF783F;
+    color: #FFFFFF;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar-track {
+    background: #0B1020;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        #FF783F,
+        #FFC38B
+    );
+    border-radius: 20px;
+}
+
+/* Smooth colour transitions */
+body,
+section,
+nav,
+header,
+footer,
+.skill-item,
+.project-card,
+.contact-box,
+.contact-form,
+button,
+input,
+textarea {
+    transition:
+        background-color .4s ease,
+        color .4s ease,
+        border-color .4s ease,
+        box-shadow .4s ease;
+}
+
+/* ==========================================
+   PREMIUM PEARL LIGHT MODE
+   CSS ONLY — NO JAVASCRIPT
+========================================== */
+
+/* Light mode activation */
+body:has(#theme-toggle:checked) {
+
+    --dark: #F7F8FC;
+    --bg: #F7F8FC;
+    --bg-2: #EEF1F7;
+
+    --white: #18243B;
+    --text: #18243B;
+    --gray: #59657A;
+    --muted: #65718A;
+
+    --card: #FFFFFF;
+    --border: rgba(24, 36, 59, 0.12);
+
+    --purple: #E85D2A;
+    --dark-purple: #D94D22;
+    --light-purple: #FFFFFF;
+
+    --orange: #FF783F;
+    --orange-soft: #F68A54;
+    --orange-pale: #C85A2E;
+
+    --purple-glow:
+        0 10px 35px rgba(255, 120, 63, 0.13);
+
+    background: #F7F8FC !important;
+    color: #18243B !important;
+}
+
+/* Smooth transition */
+body:has(#theme-toggle:checked),
+body:has(#theme-toggle:checked) section,
+body:has(#theme-toggle:checked) nav,
+body:has(#theme-toggle:checked) footer,
+body:has(#theme-toggle:checked) .project-card,
+body:has(#theme-toggle:checked) .skill-item {
+    transition:
+        background .4s ease,
+        color .4s ease,
+        border-color .4s ease,
+        box-shadow .4s ease;
+}
+
+/* Main background */
+body:has(#theme-toggle:checked) {
+    background:
+        radial-gradient(
+            circle at 10% 5%,
+            rgba(255, 120, 63, .08),
+            transparent 30%
+        ),
+        #F7F8FC !important;
+}
+
+/* Navbar */
+body:has(#theme-toggle:checked) .nav,
+body:has(#theme-toggle:checked) .navbar,
+body:has(#theme-toggle:checked) .header {
+    background: rgba(255, 255, 255, .88) !important;
+    border: 1px solid rgba(24, 36, 59, .10);
+    box-shadow: 0 8px 30px rgba(24, 36, 59, .07);
+}
+
+/* Navbar links */
+body:has(#theme-toggle:checked) .nav a,
+body:has(#theme-toggle:checked) .navbar a,
+body:has(#theme-toggle:checked) .header a,
+body:has(#theme-toggle:checked) .nav-link {
+    color: #34425C !important;
+}
+
+body:has(#theme-toggle:checked) .nav a:hover,
+body:has(#theme-toggle:checked) .navbar a:hover,
+body:has(#theme-toggle:checked) .header a:hover,
+body:has(#theme-toggle:checked) .nav-link:hover {
+    color: #E85D2A !important;
+}
+
+/* Hero */
+body:has(#theme-toggle:checked) .hero {
+    background:
+        radial-gradient(
+            circle at 15% 25%,
+            rgba(255, 120, 63, .12),
+            transparent 40%
+        ),
+        radial-gradient(
+            circle at 85% 75%,
+            rgba(100, 130, 190, .10),
+            transparent 40%
+        ),
+        #F7F8FC !important;
+}
+
+body:has(#theme-toggle:checked) .hero-title,
+body:has(#theme-toggle:checked) .hero h1 {
+    color: #18243B !important;
+}
+
+body:has(#theme-toggle:checked) .hero-description {
+    color: #59657A !important;
+}
+
+body:has(#theme-toggle:checked) .hero-subtitle {
+    color: #E85D2A !important;
+}
+
+/* Section backgrounds */
+body:has(#theme-toggle:checked) .about,
+body:has(#theme-toggle:checked) .projects {
+    background: #FFFFFF !important;
+}
+
+body:has(#theme-toggle:checked) .skills,
+body:has(#theme-toggle:checked) .contact {
+    background: #EEF1F7 !important;
+}
+
+/* Section headings */
+body:has(#theme-toggle:checked) .section-title {
+    color: #E85D2A !important;
+}
+
+/* Section descriptions */
+body:has(#theme-toggle:checked) .about-description,
+body:has(#theme-toggle:checked) .about-text p,
+body:has(#theme-toggle:checked) .skill-item p,
+body:has(#theme-toggle:checked) .project-body p,
+body:has(#theme-toggle:checked) .contact-box p {
+    color: #59657A !important;
+}
+
+/* Skill cards */
+body:has(#theme-toggle:checked) .skill-item {
+    background: linear-gradient(
+        145deg,
+        #FFFFFF,
+        #F4F6FA
+    ) !important;
+
+    color: #E85D2A !important;
+    border: 1px solid #E1E5EE;
+    box-shadow: 0 8px 25px rgba(24, 36, 59, .05);
+}
+
+body:has(#theme-toggle:checked) .skill-item:hover {
+    border-color: #FF783F;
+    box-shadow: 0 15px 35px rgba(255, 120, 63, .13);
+}
+
+/* Project cards */
+body:has(#theme-toggle:checked) .project-card {
+    background: #FFFFFF !important;
+    border: 1px solid #E2E6EF;
+    box-shadow: 0 10px 30px rgba(24, 36, 59, .06);
+}
+
+body:has(#theme-toggle:checked) .project-card:hover {
+    border-color: #FF985F;
+    box-shadow: 0 20px 45px rgba(255, 120, 63, .14);
+}
+
+/* Project thumbnails */
+body:has(#theme-toggle:checked) .project-thumb,
+body:has(#theme-toggle:checked) .project-image {
+    background: linear-gradient(
+        135deg,
+        #FFE9DB,
+        #FCEFE8
+    ) !important;
+}
+
+/* Contact box */
+body:has(#theme-toggle:checked) .contact-box,
+body:has(#theme-toggle:checked) .contact-form {
+    background: linear-gradient(
+        145deg,
+        #FFFFFF,
+        #FFF4ED
+    ) !important;
+
+    border: 1px solid rgba(255, 120, 63, .25);
+    box-shadow: 0 15px 40px rgba(24, 36, 59, .06);
+}
+
+/* Form fields */
+body:has(#theme-toggle:checked) input,
+body:has(#theme-toggle:checked) textarea,
+body:has(#theme-toggle:checked) select {
+    background: #FFFFFF !important;
+    color: #18243B !important;
+    border: 1px solid #DCE2EC !important;
+}
+
+body:has(#theme-toggle:checked) input::placeholder,
+body:has(#theme-toggle:checked) textarea::placeholder {
+    color: #8791A5;
+}
+
+body:has(#theme-toggle:checked) input:focus,
+body:has(#theme-toggle:checked) textarea:focus {
+    border-color: #FF783F !important;
+    box-shadow: 0 0 12px rgba(255, 120, 63, .12);
+}
+
+/* Buttons */
+body:has(#theme-toggle:checked) button,
+body:has(#theme-toggle:checked) .btn,
+body:has(#theme-toggle:checked) .hero-button {
+    color: #FFFFFF !important;
+    background: linear-gradient(
+        135deg,
+        #FF783F,
+        #E85D2A
+    ) !important;
+}
+
+/* Footer */
+body:has(#theme-toggle:checked) footer,
+body:has(#theme-toggle:checked) .footer {
+    background: #FFFFFF !important;
+    color: #65718A !important;
+    border-top: 1px solid #E1E5EE;
+}
+
+/* Decorative glow */
+body:has(#theme-toggle:checked)::after {
+    background: rgba(255, 120, 63, .08);
+}
+
+/* Scrollbar */
+body:has(#theme-toggle:checked)::-webkit-scrollbar-track {
+    background: #EEF1F7;
+}
+
+body:has(#theme-toggle:checked)::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        #FF783F,
+        #FFC38B
+    );
+}
+
+/* Text selection */
+body:has(#theme-toggle:checked) ::selection {
+    background: #FF783F;
+    color: #FFFFFF;
+}
+
+/* Theme button in light mode */
+body:has(#theme-toggle:checked) .theme-switch {
+    background: #FFF0E7;
+    color: #D94D22;
+    border-color: #FF985F;
+}
