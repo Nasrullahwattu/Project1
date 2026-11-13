@@ -12,7 +12,8 @@
 </head>
 
 <body>
-
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
     <!-- Navbar Section -->
 
 <!-- NAVBAR -->
@@ -52,19 +53,64 @@
 
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Hi, I'm <em><span style="color: #33c6e7;">Muhammad Nasrullah</span></em></h1>
-            <h2 class="hero-subtitle">Web Developer</h2>
-            <p class="hero-description">
-                I create simple, beautiful and user-friendly websites
-                using modern web technologies. Welcome to my portfolio!
-            </p>
-            <a href="#contact" class="hero-button">Contact Me</a>
+    
+<section id="home" class="hero">
+
+    <!-- LEFT: INTRODUCTION -->
+    <div class="hero-content">
+
+        <div class="hero-eyebrow">
+            ✦ FRONT-END DEVELOPER | PORTFOLIO
         </div>
-        <div class="hero-image">
-            <img src="images/1793976846648.jpg" alt="M.Nasrullah Profile Photo">
+
+        <h1 class="hero-title">
+            Hi, I'm
+            <em>
+                <span>Muhammad Nasrullah</span>
+            </em>
+        </h1>
+
+        <h2 class="hero-subtitle">
+            Web Developer
+        </h2>
+
+        <p class="hero-description">
+            I create simple, beautiful and user-friendly websites
+            using modern web technologies. Welcome to my portfolio!
+        </p>
+
+        <div class="hero-actions">
+            <a href="#contact" class="hero-button">
+                Contact Me <span>↗</span>
+            </a>
         </div>
+
+    </div>
+
+    <!-- RIGHT: PROFILE PHOTO -->
+    <div class="hero-image">
+
+        <div class="hero-photo-frame">
+            <img
+                src="images/1793976846648.jpg"
+                alt="Muhammad Nasrullah Profile Photo"
+            >
+        </div>
+
+        <!-- FLOATING LABEL 1 -->
+        <div class="hero-badge top">
+            <strong>Creative Developer</strong>
+            Building digital experiences
+        </div>
+
+        <!-- FLOATING LABEL 2 -->
+        <div class="hero-badge bottom">
+            <strong>Web Development</strong>
+            Design · Code · Innovation
+        </div>
+
+    </div>
+
     </section>
 
     <!-- About Me Section -->
@@ -155,6 +201,59 @@
             &copy; 2026 Muhammad Nasrullah. All Rights Reserved.
         </p>
     </footer>
+<script>
+(() => {
+    const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!fine || reduce) return;
 
+    const dot = document.querySelector('.cursor-dot');
+    const ring = document.querySelector('.cursor-ring');
+    if (!dot || !ring) return;
+
+    const hoverSel = 'a, button, label, .skill-item, .project-card, .theme-switch, .menu-icon';
+    const textSel = 'input, textarea';
+    let mx = 0, my = 0, rx = 0, ry = 0, started = false;
+
+    addEventListener('mousemove', (e) => {
+        mx = e.clientX;
+        my = e.clientY;
+
+        if (!started) {
+            started = true;
+            rx = mx; ry = my;
+            document.documentElement.classList.add('has-custom-cursor');
+            dot.classList.add('is-visible');
+            ring.classList.add('is-visible');
+        }
+
+        dot.style.transform = `translate3d(${mx}px, ${my}px, 0)`;
+
+        const overText = !!e.target.closest(textSel);
+        ring.classList.toggle('is-text', overText);
+        ring.classList.toggle('is-hover', !overText && !!e.target.closest(hoverSel));
+    });
+
+    addEventListener('mousedown', () => ring.classList.add('is-down'));
+    addEventListener('mouseup', () => ring.classList.remove('is-down'));
+
+    document.addEventListener('mouseleave', () => {
+        dot.classList.remove('is-visible');
+        ring.classList.remove('is-visible');
+    });
+    document.addEventListener('mouseenter', () => {
+        if (!started) return;
+        dot.classList.add('is-visible');
+        ring.classList.add('is-visible');
+    });
+
+    (function follow() {
+        rx += (mx - rx) * 0.16;   // lower = smoother, slower trail
+        ry += (my - ry) * 0.16;
+        ring.style.transform = `translate3d(${rx}px, ${ry}px, 0)`;
+        requestAnimationFrame(follow);
+    })();
+})();
+</script>
 </body>
 </html>
