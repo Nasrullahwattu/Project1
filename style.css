@@ -1478,3 +1478,240 @@ a:hover, button:hover, .project-card:hover, .skill-item:hover {
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* ==========================================
+   DARK & LIGHT MODE SWITCH
+   CSS ONLY - NO JAVASCRIPT
+========================================== */
+
+/* Smooth theme transitions */
+body,
+.nav,
+.nav ul,
+.about,
+.skills,
+.projects,
+.contact,
+.project-card,
+.skill-item,
+.contact-box,
+footer,
+.hero,
+.about-text,
+input,
+textarea {
+    transition:
+        background-color 0.4s ease,
+        color 0.4s ease,
+        border-color 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+/* Theme switch button */
+.theme-checkbox {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.theme-switch {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 9px 16px;
+    margin-left: 15px;
+
+    color: #FFFFFF;
+    background: rgba(255, 107, 0, 0.15);
+    border: 1px solid #FF6B00;
+    border-radius: 30px;
+
+    font-size: 13px;
+    font-weight: bold;
+    white-space: nowrap;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.theme-switch:hover {
+    background: #FF6B00;
+    color: #FFFFFF;
+    box-shadow: 0 0 18px rgba(255, 107, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+.theme-light {
+    display: none;
+}
+
+.theme-checkbox:focus-visible + .theme-switch {
+    outline: 3px solid #FF8C32;
+    outline-offset: 4px;
+}
+
+/* ==========================================
+   LIGHT MODE
+   Activates when checkbox is checked
+========================================== */
+
+body:has(#theme-toggle:checked) {
+
+    --bg: #F5F5F7;
+    --bg-2: #FFFFFF;
+    --card: rgba(255, 255, 255, 0.85);
+    --border: rgba(25, 25, 25, 0.12);
+    --text: #202020;
+    --muted: #666666;
+
+    --orange: #F06400;
+    --orange-soft: #FF8C32;
+    --orange-pale: #D95B00;
+
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* Change switch text */
+body:has(#theme-toggle:checked) .theme-dark {
+    display: none;
+}
+
+body:has(#theme-toggle:checked) .theme-light {
+    display: inline;
+}
+
+/* Light mode navbar */
+body:has(#theme-toggle:checked) .nav {
+    background: rgba(255, 255, 255, 0.72);
+    border-color: rgba(0, 0, 0, 0.12);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
+}
+
+body:has(#theme-toggle:checked) .nav ul a {
+    color: #444444;
+}
+
+body:has(#theme-toggle:checked) .nav ul a:hover {
+    color: var(--orange);
+}
+
+/* Light mode hero */
+body:has(#theme-toggle:checked) .hero {
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(255, 107, 0, 0.12),
+            transparent 45%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(255, 140, 50, 0.08),
+            transparent 45%
+        ),
+        #F5F5F7;
+}
+
+body:has(#theme-toggle:checked) .hero p {
+    color: #666666;
+}
+
+body:has(#theme-toggle:checked) .eyebrow {
+    color: #C65300;
+    background: rgba(255, 255, 255, 0.75);
+    border-color: rgba(0, 0, 0, 0.12);
+}
+
+/* Light mode sections */
+body:has(#theme-toggle:checked) .about,
+body:has(#theme-toggle:checked) .projects {
+    background: #FFFFFF;
+}
+
+body:has(#theme-toggle:checked) .skills,
+body:has(#theme-toggle:checked) .contact {
+    background: #F3F3F5;
+}
+
+/* Light mode text */
+body:has(#theme-toggle:checked) .about-text h3,
+body:has(#theme-toggle:checked) .skill-item h4,
+body:has(#theme-toggle:checked) .project-body h4,
+body:has(#theme-toggle:checked) .contact-box h2 {
+    color: #202020;
+}
+
+body:has(#theme-toggle:checked) .about-text p,
+body:has(#theme-toggle:checked) .skill-item p,
+body:has(#theme-toggle:checked) .project-body p,
+body:has(#theme-toggle:checked) .contact-box p {
+    color: #666666;
+}
+
+/* Light mode skill cards */
+body:has(#theme-toggle:checked) .skill-item {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(0, 0, 0, 0.10);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+}
+
+/* Light mode project cards */
+body:has(#theme-toggle:checked) .project-card {
+    background: #FFFFFF;
+    border-color: rgba(0, 0, 0, 0.10);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+body:has(#theme-toggle:checked) .project-card:hover {
+    box-shadow: 0 20px 45px rgba(255, 107, 0, 0.14);
+}
+
+/* Light mode project thumbnail */
+body:has(#theme-toggle:checked) .project-thumb {
+    background: linear-gradient(135deg, #FFF0E5, #FFE0C7);
+}
+
+/* Light mode contact box */
+body:has(#theme-toggle:checked) .contact-box {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 107, 0, 0.12),
+        rgba(255, 255, 255, 0.8)
+    );
+    border-color: rgba(255, 107, 0, 0.3);
+}
+
+/* Light mode footer */
+body:has(#theme-toggle:checked) footer {
+    background: #FFFFFF;
+    color: #666666;
+    border-color: rgba(0, 0, 0, 0.12);
+}
+
+/* Light mode wave divider */
+body:has(#theme-toggle:checked) .wave svg path {
+    fill: #FFFFFF;
+}
+
+/* Light mode skill progress bars */
+body:has(#theme-toggle:checked) .bar {
+    background: rgba(0, 0, 0, 0.10);
+}
+
+/* Light mode orange glow */
+body:has(#theme-toggle:checked)::after {
+    background: rgba(255, 107, 0, 0.07);
+}
+
+/* Mobile theme button */
+@media (max-width: 860px) {
+    .theme-switch {
+        padding: 8px 11px;
+        margin-left: 8px;
+        font-size: 12px;
+    }
+}
