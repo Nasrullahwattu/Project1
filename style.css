@@ -1147,3 +1147,318 @@ body:has(#theme-toggle:checked) .hero-badge strong { color: #18243b; }
     .cursor-ring { display: none; }
     
 }
+/* =========================================================
+   ANIMATION LAYER: load AFTER style.css
+   <link rel="stylesheet" href="style.css">
+   <link rel="stylesheet" href="animations.css">
+   Everything is disabled automatically for users who prefer
+   reduced motion (see the last section).
+========================================================= */
+
+/* ---------- 1. SCROLL-REVEAL (works with the small JS in index.html) ----------
+   Uses keyframe animations (not transitions) so your existing
+   hover transforms keep working after the reveal finishes.      */
+.js .reveal { opacity: 0; }
+
+.js .reveal.in-view {
+    opacity: 1;
+    animation: revealUp .85s cubic-bezier(.2, .7, .2, 1) backwards;
+    animation-delay: calc(var(--i, 0) * 110ms);
+}
+
+@keyframes revealUp {
+    from { opacity: 0; transform: translateY(38px) scale(.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Section title underline draws itself when revealed */
+.js .section-title.in-view::after {
+    animation: lineGrow .9s .35s cubic-bezier(.2, .7, .2, 1) backwards;
+}
+
+@keyframes lineGrow {
+    from { width: 0; }
+    to   { width: 58px; }
+}
+
+/* ---------- 2. SCROLL PROGRESS BAR (pure CSS, modern browsers) ---------- */
+.header::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--orange), var(--orange-pale));
+    transform: scaleX(0);
+    transform-origin: left;
+    pointer-events: none;
+}
+
+@supports (animation-timeline: scroll()) {
+    .header::after {
+        animation: scrollProgress linear both;
+        animation-timeline: scroll(root);
+    }
+}
+
+@keyframes scrollProgress {
+    to { transform: scaleX(1); }
+}
+
+/* Active nav link (scroll-spy) */
+.nav-link.active { color: var(--orange-light); }
+.nav-link.active::after { width: 100%; }
+
+/* ---------- 3. HERO TEXT: staggered entrance ---------- */
+.hero-content { animation: none; }
+
+.hero-content > * {
+    animation: heroRise .85s cubic-bezier(.2, .7, .2, 1) backwards;
+}
+
+.hero-eyebrow     { animation-delay: .15s; }
+.hero-title       { animation-delay: .30s; }
+.hero-subtitle    { animation-delay: .45s; }
+.hero-description { animation-delay: .60s; }
+.hero-actions     { animation-delay: .75s; }
+
+@keyframes heroRise {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Slowly drifting grid behind the hero */
+.hero::before { animation: gridDrift 18s linear infinite; }
+
+@keyframes gridDrift {
+    to { background-position: 58px 58px, 58px 58px; }
+}
+
+/* Contact button: soft pulse ring + moving arrow */
+.hero-button { position: relative; }
+
+.hero-button::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 2px solid var(--orange);
+    border-radius: inherit;
+    pointer-events: none;
+    animation: btnPulse 2.6s ease-out infinite;
+}
+
+.hero-button:hover::after { animation-play-state: paused; opacity: 0; }
+
+@keyframes btnPulse {
+    0%   { opacity: .75; transform: scale(1); }
+    100% { opacity: 0;   transform: scale(1.18, 1.5); }
+}
+
+/* ---------- 4. PROFILE IMAGE ---------- */
+
+/* 4a. Gentle floating of the whole portrait (keeps your entrance animation) */
+.hero-image {
+    animation:
+        portraitEnter 1s .2s ease both,
+        heroFloat 7s 1.3s ease-in-out infinite;
+}
+
+@keyframes heroFloat {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-14px); }
+}
+
+/* 4b. A light that travels around the photo border */
+@property --ang {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+}
+
+.hero-orbit {
+    position: absolute;
+    inset: -9px;
+    z-index: 3;
+    padding: 2px;
+    border-radius: 20px;
+    pointer-events: none;
+    background: conic-gradient(
+        from var(--ang),
+        transparent 0 62%,
+        var(--orange) 84%,
+        var(--orange-pale) 100%
+    );
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    animation: orbitSpin 5s linear infinite;
+}
+
+/* blurred copy = glow */
+.hero-orbit.glow {
+    filter: blur(9px);
+    opacity: .75;
+}
+
+@keyframes orbitSpin {
+    to { --ang: 360deg; }
+}
+
+/* 4c. Offset frame breathes slightly */
+.hero-image::before { animation: framePulse 4.5s ease-in-out infinite alternate; }
+
+@keyframes framePulse {
+    from { inset: 17px -16px -16px 17px; }
+    to   { inset: 22px -21px -21px 22px; }
+}
+
+/* 4d. Photo: slow "Ken Burns" zoom + shine sweep */
+.hero-photo-frame { position: relative; }
+
+.hero-photo-frame img { animation: kenBurns 14s ease-in-out infinite alternate; }
+
+@keyframes kenBurns {
+    from { scale: 1; }
+    to   { scale: 1.06; }
+}
+
+.hero-photo-frame::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(105deg, transparent, rgba(255, 255, 255, .18), transparent);
+    transform: skewX(-20deg);
+    pointer-events: none;
+    animation: photoShine 6s 2s ease-in-out infinite;
+}
+
+@keyframes photoShine {
+    0%        { left: -120%; }
+    35%, 100% { left: 170%; }
+}
+
+/* 4e. Badges: a living status dot */
+.hero-badge.top strong::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 8px;
+    border-radius: 50%;
+    background: #3ddc84;
+    vertical-align: middle;
+    animation: statusDot 2s ease-out infinite;
+}
+
+@keyframes statusDot {
+    0%   { box-shadow: 0 0 0 0 rgba(61, 220, 132, .6); }
+    100% { box-shadow: 0 0 0 9px rgba(61, 220, 132, 0); }
+}
+
+/* ---------- 5. SKILLS ---------- */
+.skill-item::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: var(--orange);
+    transform: translateX(-50%);
+    transition: width .35s ease;
+}
+
+.skill-item:hover::after { width: 70%; }
+
+/* ---------- 6. PROJECT CARDS ---------- */
+.project-card { position: relative; }
+
+/* shine sweep on hover */
+.project-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -90%;
+    width: 50%;
+    height: 100%;
+    z-index: 2;
+    background: linear-gradient(105deg, transparent, rgba(255, 255, 255, .09), transparent);
+    transform: skewX(-18deg);
+    pointer-events: none;
+    transition: left .85s ease;
+}
+
+.project-card:hover::before { left: 150%; }
+
+/* accent bar grows across the top */
+.project-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--orange), var(--orange-pale));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .5s ease;
+}
+
+.project-card:hover::after { transform: scaleX(1); }
+
+/* subtle 3D tilt (--rx / --ry are set by the script) */
+.project-card:hover {
+    transform: perspective(900px) translateY(-9px)
+               rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    transition: transform .15s ease-out, border-color .4s ease, box-shadow .4s ease;
+}
+
+.project-link::after {
+    content: "\2192";
+    margin-left: 8px;
+    transition: transform .25s ease;
+}
+
+.project-link:hover::after { transform: translateX(5px); }
+
+/* ---------- 7. CONTACT FORM ---------- */
+.form-input:focus,
+.form-textarea:focus { transform: translateY(-2px); }
+
+.form-button { position: relative; overflow: hidden; }
+
+.form-button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -80%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(105deg, transparent, rgba(255, 255, 255, .35), transparent);
+    transform: skewX(-20deg);
+    transition: left .7s ease;
+}
+
+.form-button:hover::after { left: 140%; }
+
+/* ---------- 8. SMALL SCREENS ---------- */
+@media (max-width: 760px) {
+    .hero-orbit { inset: -7px; border-radius: 18px; }
+}
+
+/* ---------- 9. REDUCED MOTION: switch the extras off ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .header::after,
+    .hero-orbit,
+    .hero-button::after,
+    .hero-photo-frame::after { display: none; }
+
+    .js .reveal { opacity: 1; }
+    .hero-image,
+    .hero-photo-frame img,
+    .hero-image::before { animation: none; }
+}

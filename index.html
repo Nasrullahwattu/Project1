@@ -7,14 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muhammad Nasrullah | Web Developer</title>
 
-    <!-- External CSS File -->
+    <!-- Adds .js so reveal animations only hide content when JavaScript works -->
+    <script>document.documentElement.classList.add('js');</script>
+
+    <!-- External CSS Files -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="animations.css">
 </head>
 
 <body>
 <div class="cursor-dot"></div>
 <div class="cursor-ring"></div>
-    <!-- Navbar Section -->
 
 <!-- NAVBAR -->
 <header class="header">
@@ -38,22 +41,17 @@
             <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
 
-<input type="checkbox" id="theme-toggle" class="theme-checkbox">
+        <input type="checkbox" id="theme-toggle" class="theme-checkbox">
 
-<label for="theme-toggle" class="theme-switch">
-    <span class="theme-dark">☀ Light Mode</span>
-    <span class="theme-light">☾ Dark Mode</span>
-</label>
-
+        <label for="theme-toggle" class="theme-switch">
+            <span class="theme-dark">☀ Light Mode</span>
+            <span class="theme-light">☾ Dark Mode</span>
+        </label>
 
     </nav>
 </header>
-    
 
-
-
-    <!-- Hero Section -->
-    
+<!-- Hero Section -->
 <section id="home" class="hero">
 
     <!-- LEFT: INTRODUCTION -->
@@ -90,6 +88,10 @@
     <!-- RIGHT: PROFILE PHOTO -->
     <div class="hero-image">
 
+        <!-- Animated light travelling around the photo -->
+        <span class="hero-orbit glow" aria-hidden="true"></span>
+        <span class="hero-orbit" aria-hidden="true"></span>
+
         <div class="hero-photo-frame">
             <img
                 src="images/1793976846648.jpg"
@@ -111,96 +113,98 @@
 
     </div>
 
-    </section>
+</section>
 
-    <!-- About Me Section -->
-    <section id="about" class="about">
-        <h2 class="section-title">About Me</h2>
-        <p class="about-description">
-            My name is Muhammad Nasrullah. I am a passionate Web Developer
-            interested in creating attractive and responsive websites.
-            I enjoy learning new technologies and improving my coding skills.
-            My goal is to become a professional front-end developer.
-        </p>
-    </section>
+<!-- About Me Section -->
+<section id="about" class="about">
+    <h2 class="section-title reveal">About Me</h2>
+    <p class="about-description reveal" style="--i:1">
+        My name is Muhammad Nasrullah. I am a passionate Web Developer
+        interested in creating attractive and responsive websites.
+        I enjoy learning new technologies and improving my coding skills.
+        My goal is to become a professional front-end developer.
+    </p>
+</section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <h2 class="section-title">My Skills</h2>
-        <ul class="skills-list">
-            <li class="skill-item">HTML5</li>
-            <li class="skill-item">CSS3</li>
-            <li class="skill-item">JavaScript</li>
-            <li class="skill-item">Responsive Web Design</li>
-            <li class="skill-item">Web Development</li>
-        </ul>
-    </section>
+<!-- Skills Section -->
+<section id="skills" class="skills">
+    <h2 class="section-title reveal">My Skills</h2>
+    <ul class="skills-list">
+        <li class="skill-item reveal" style="--i:0">HTML5</li>
+        <li class="skill-item reveal" style="--i:1">CSS3</li>
+        <li class="skill-item reveal" style="--i:2">JavaScript</li>
+        <li class="skill-item reveal" style="--i:3">Responsive Web Design</li>
+        <li class="skill-item reveal" style="--i:4">Web Development</li>
+    </ul>
+</section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <h2 class="section-title">My Projects</h2>
+<!-- Projects Section -->
+<section id="projects" class="projects">
+    <h2 class="section-title reveal">My Projects</h2>
 
-        <div class="project-container">
+    <div class="project-container">
 
-            <div class="project-card">
-                <img src="images/portfolio-website.png" alt="Portfolio Website" class="project-image">
-                <h3 class="project-title">Portfolio Website</h3>
-                <p class="project-description">A personal portfolio website built using HTML and CSS.</p>
-                <a href="#" class="project-link">View Project</a>
-            </div>
-
-            <div class="project-card">
-                <img src="images/login-page.png" alt="Login Page" class="project-image">
-                <h3 class="project-title">Login Page</h3>
-                <p class="project-description">A simple and attractive login page design.</p>
-                <a href="#" class="project-link">View Project</a>
-            </div>
-
-            <div class="project-card">
-                <img src="images/business-website.png" alt="Business Website" class="project-image">
-                <h3 class="project-title">Business Website</h3>
-                <p class="project-description">A professional website layout for a small business.</p>
-                <a href="#" class="project-link">View Project</a>
-            </div>
-
-            <div class="project-card">
-                <img src="images/landing-page.png" alt="Landing Page" class="project-image">
-                <h3 class="project-title">Landing Page</h3>
-                <p class="project-description">A modern landing page with a clean and simple design.</p>
-                <a href="#" class="project-link">View Project</a>
-            </div>
-
+        <div class="project-card reveal" style="--i:0">
+            <img src="images/portfolio-website.png" alt="Portfolio Website" class="project-image">
+            <h3 class="project-title">Portfolio Website</h3>
+            <p class="project-description">A personal portfolio website built using HTML and CSS.</p>
+            <a href="#" class="project-link">View Project</a>
         </div>
-    </section>
 
-    <!-- Contact Form Section -->
-    <section id="contact" class="contact">
-        <h2 class="section-title">Contact Me</h2>
-        <p class="contact-description">Have a question? Send me a message!</p>
+        <div class="project-card reveal" style="--i:1">
+            <img src="images/login-page.png" alt="Login Page" class="project-image">
+            <h3 class="project-title">Login Page</h3>
+            <p class="project-description">A simple and attractive login page design.</p>
+            <a href="#" class="project-link">View Project</a>
+        </div>
 
-        <form class="contact-form" action="#" method="post">
-            <label class="form-label" for="name">Your Name</label>
-            <input class="form-input" type="text" id="name" name="name"
-                placeholder="Enter your name" required>
+        <div class="project-card reveal" style="--i:2">
+            <img src="images/business-website.png" alt="Business Website" class="project-image">
+            <h3 class="project-title">Business Website</h3>
+            <p class="project-description">A professional website layout for a small business.</p>
+            <a href="#" class="project-link">View Project</a>
+        </div>
 
-            <label class="form-label" for="email">Your Email</label>
-            <input class="form-input" type="email" id="email" name="email"
-                placeholder="Enter your email" required>
+        <div class="project-card reveal" style="--i:3">
+            <img src="images/landing-page.png" alt="Landing Page" class="project-image">
+            <h3 class="project-title">Landing Page</h3>
+            <p class="project-description">A modern landing page with a clean and simple design.</p>
+            <a href="#" class="project-link">View Project</a>
+        </div>
 
-            <label class="form-label" for="message">Your Message</label>
-            <textarea class="form-textarea" id="message" name="message"
-                rows="5" placeholder="Write your message..." required></textarea>
+    </div>
+</section>
 
-            <button class="form-button" type="submit">Send Message</button>
-        </form>
-    </section>
+<!-- Contact Form Section -->
+<section id="contact" class="contact">
+    <h2 class="section-title reveal">Contact Me</h2>
+    <p class="contact-description reveal" style="--i:1">Have a question? Send me a message!</p>
 
-    <!-- Footer Section -->
-    <footer class="footer">
-        <p class="footer-text">
-            &copy; 2026 Muhammad Nasrullah. All Rights Reserved.
-        </p>
-    </footer>
+    <form class="contact-form reveal" style="--i:2" action="#" method="post">
+        <label class="form-label" for="name">Your Name</label>
+        <input class="form-input" type="text" id="name" name="name"
+            placeholder="Enter your name" required>
+
+        <label class="form-label" for="email">Your Email</label>
+        <input class="form-input" type="email" id="email" name="email"
+            placeholder="Enter your email" required>
+
+        <label class="form-label" for="message">Your Message</label>
+        <textarea class="form-textarea" id="message" name="message"
+            rows="5" placeholder="Write your message..." required></textarea>
+
+        <button class="form-button" type="submit">Send Message</button>
+    </form>
+</section>
+
+<!-- Footer Section -->
+<footer class="footer">
+    <p class="footer-text">
+        &copy; 2026 Muhammad Nasrullah. All Rights Reserved.
+    </p>
+</footer>
+
+<!-- Trailing cursor (your original script) -->
 <script>
 (() => {
     const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
@@ -248,11 +252,66 @@
     });
 
     (function follow() {
-        rx += (mx - rx) * 0.16;   // lower = smoother, slower trail
+        rx += (mx - rx) * 0.16;
         ry += (my - ry) * 0.16;
         ring.style.transform = `translate3d(${rx}px, ${ry}px, 0)`;
         requestAnimationFrame(follow);
     })();
+})();
+</script>
+
+<!-- Scroll reveal, active nav link, card tilt -->
+<script>
+(() => {
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    /* 1. Reveal elements as they enter the screen */
+    const items = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window && !reduce) {
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    io.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -6% 0px' });
+        items.forEach((el) => io.observe(el));
+    } else {
+        items.forEach((el) => el.classList.add('in-view'));
+    }
+
+    /* 2. Highlight the nav link of the section you are viewing */
+    const links = document.querySelectorAll('.nav-link');
+    if ('IntersectionObserver' in window) {
+        const spy = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                links.forEach((a) => {
+                    a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
+                });
+            });
+        }, { rootMargin: '-45% 0px -50% 0px' });
+        document.querySelectorAll('section[id]').forEach((s) => spy.observe(s));
+    }
+
+    /* 3. Subtle 3D tilt on project cards (mouse devices only) */
+    if (fine && !reduce) {
+        document.querySelectorAll('.project-card').forEach((card) => {
+            card.addEventListener('mousemove', (e) => {
+                const r = card.getBoundingClientRect();
+                const x = (e.clientX - r.left) / r.width - 0.5;
+                const y = (e.clientY - r.top) / r.height - 0.5;
+                card.style.setProperty('--ry', (x * 8).toFixed(2) + 'deg');
+                card.style.setProperty('--rx', (-y * 8).toFixed(2) + 'deg');
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.removeProperty('--rx');
+                card.style.removeProperty('--ry');
+            });
+        });
+    }
 })();
 </script>
 </body>
