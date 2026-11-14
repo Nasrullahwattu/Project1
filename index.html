@@ -19,9 +19,26 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="animations.css">
     <link rel="stylesheet" href="typography.css">
+    <link rel="stylesheet" href="background.css">
 </head>
 
 <body>
+
+<!-- ANIMATED BACKGROUND (decorative) -->
+<div class="bg-fx" aria-hidden="true">
+    <div class="bg-aurora">
+        <span class="bg-blob blob-1"></span>
+        <span class="bg-blob blob-2"></span>
+        <span class="bg-blob blob-3"></span>
+    </div>
+    <div class="bg-grid"></div>
+    <span class="bg-ring ring-1"></span>
+    <span class="bg-ring ring-2"></span>
+    <canvas id="bg-canvas"></canvas>
+    <div class="bg-noise"></div>
+    <div class="bg-vignette"></div>
+</div>
+
 <div class="cursor-dot"></div>
 <div class="cursor-ring"></div>
 
@@ -100,7 +117,7 @@
 
         <div class="hero-photo-frame">
             <img
-                src="images/1793976846648.jpg"
+                src="images/abc.png"
                 alt="Muhammad Nasrullah Profile Photo"
             >
         </div>
@@ -320,5 +337,8 @@
     }
 })();
 </script>
+
+<!-- Background particle network -->
+<script src="background.js" defer></script>
 </body>
 </html>
