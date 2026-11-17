@@ -353,7 +353,6 @@ body:has(#theme-toggle:checked) .education { background: rgba(238, 241, 247, .55
     .process-icon::after,
     .process-card::before { display: none; }
     .process-card:hover { transform: none; }
-=======
 /* =========================================================
    PROCESS SECTION: "How I Deliver"
    Load AFTER background.css:

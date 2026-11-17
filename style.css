@@ -1,7 +1,7 @@
 /* =========================================================
-   MUHAMMAD NASRULLAH Ã¢â‚¬â€ PREMIUM PORTFOLIO
-   Midnight Navy + Warm Orange | CSS only | No JavaScript
-   Matches the HTML structure supplied in this conversation.
+   MUHAMMAD NASRULLAH — PREMIUM PORTFOLIO
+   Midnight Navy + Warm Orange | style.css (base layer)
+   Load order: style.css > animations.css > typography.css > background.css
 ========================================================= */
 
 /* 1. DESIGN TOKENS */
@@ -27,12 +27,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Inter, "Segoe UI", Arial, sans-serif;
 }
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 90px;
+    scroll-padding-top: calc(var(--header-height) + 14px);
 }
 
 body {
@@ -43,6 +42,7 @@ body {
         radial-gradient(circle at 8% 5%, rgba(255, 120, 63, .08), transparent 28%),
         var(--bg);
     color: var(--text);
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
     line-height: 1.7;
     animation: pageEnter .8s ease both;
 }
@@ -266,6 +266,7 @@ section {
 
 /* 4. HERO SECTION */
 .hero {
+    min-height: calc(100vh - var(--header-height));
     min-height: min(790px, calc(100svh - var(--header-height)));
     display: grid;
     grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
@@ -291,6 +292,7 @@ section {
         linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
     background-size: 58px 58px;
+    -webkit-mask-image: linear-gradient(90deg, black, transparent 85%);
     mask-image: linear-gradient(90deg, black, transparent 85%);
 }
 
@@ -351,7 +353,7 @@ section {
 .hero-title em {
     display: block;
     margin-top: 7px;
-    font-style: italic;
+    font-style: normal;
 }
 
 .hero-title span {
@@ -425,7 +427,7 @@ section {
     justify-self: center;
     width: min(100%, 370px);
     aspect-ratio: 4 / 5;
-    animation: portraitEnter 0.65s .2s ease both;
+    animation: portraitEnter .65s .2s ease both;
 }
 
 @keyframes portraitEnter {
@@ -498,8 +500,8 @@ section {
     font-size: .7rem;
     line-height: 1.5;
     box-shadow: 0 12px 30px rgba(0,0,0,.3);
-    backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
 }
 
 .hero-badge strong {
@@ -518,7 +520,7 @@ section {
 .hero-badge.bottom {
     right: -66px;
     bottom: 14%;
-    animation: badgeFloat 3.25s 0.65s ease-in-out infinite;
+    animation: badgeFloat 3.25s .65s ease-in-out infinite;
 }
 
 @keyframes badgeFloat {
@@ -833,6 +835,10 @@ body:has(#theme-toggle:checked) .hero-eyebrow {
     border-color: rgba(232,93,42,.2);
 }
 
+/* Better contrast for headings on light backgrounds */
+body:has(#theme-toggle:checked) .section-title,
+body:has(#theme-toggle:checked) .project-title { color: #d4511d; }
+
 body:has(#theme-toggle:checked) .about,
 body:has(#theme-toggle:checked) .projects { background: #fff; }
 
@@ -917,7 +923,6 @@ body:has(#theme-toggle:checked) .hero-badge strong { color: #18243b; }
         margin-left: 2px;
     }
 
-    .theme-checkbox { right: 60px; }
     .theme-switch {
         order: 2;
         margin-left: auto;
@@ -1041,14 +1046,15 @@ body:has(#theme-toggle:checked) .hero-badge strong { color: #18243b; }
         transition-duration: .01ms !important;
     }
 }
-/* 14. PREMIUM CURSOR (CSS ONLY) */
+
+/* 14. PREMIUM CURSOR (CSS only; SVG data URIs are fully URL-encoded) */
 @media (hover: hover) and (pointer: fine) {
     :root {
-        --cursor-default: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><circle cx='16' cy='16' r='10' fill='none' stroke='%23ff9a65' stroke-opacity='.55' stroke-width='1.5'/><circle cx='16' cy='16' r='3.5' fill='%23ff783f'/></svg>") 16 16, auto;
+        --cursor-default: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23ff9a65' stroke-opacity='.55' stroke-width='1.5'/%3E%3Ccircle cx='16' cy='16' r='3.5' fill='%23ff783f'/%3E%3C/svg%3E") 16 16, auto;
 
-        --cursor-pointer: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><circle cx='16' cy='16' r='13' fill='%23ff783f' fill-opacity='.18' stroke='%23ff783f' stroke-width='2'/><circle cx='16' cy='16' r='4.5' fill='%23ffc38b'/></svg>") 16 16, pointer;
+        --cursor-pointer: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%23ff783f' fill-opacity='.18' stroke='%23ff783f' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='4.5' fill='%23ffc38b'/%3E%3C/svg%3E") 16 16, pointer;
 
-        --cursor-text: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><path d='M12 5h8M16 5v22M12 27h8' stroke='%23ff783f' stroke-width='2' stroke-linecap='round' fill='none'/></svg>") 16 16, text;
+        --cursor-text: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M12 5h8M16 5v22M12 27h8' stroke='%23ff783f' stroke-width='2' stroke-linecap='round' fill='none'/%3E%3C/svg%3E") 16 16, text;
     }
 
     html,
@@ -1072,7 +1078,8 @@ body:has(#theme-toggle:checked) .hero-badge strong { color: #18243b; }
         cursor: var(--cursor-text);
     }
 }
-/* 15. TRAILING CURSOR (needs the small script below) */
+
+/* 15. TRAILING CURSOR (needs the small cursor script in index.html) */
 @media (hover: hover) and (pointer: fine) {
     html.has-custom-cursor,
     html.has-custom-cursor * {
@@ -1111,17 +1118,16 @@ body:has(#theme-toggle:checked) .hero-badge strong { color: #18243b; }
     .cursor-dot.is-visible,
     .cursor-ring.is-visible { opacity: 1; }
 
-    /* Over links, buttons, cards */
     .cursor-ring.is-hover {
         width: 66px;
         height: 66px;
         margin: -33px 0 0 -33px;
         border-color: var(--orange);
         background: rgba(255, 120, 63, .12);
+        -webkit-backdrop-filter: blur(2px);
         backdrop-filter: blur(2px);
     }
 
-    /* While clicking */
     .cursor-ring.is-down {
         width: 28px;
         height: 28px;
@@ -1129,7 +1135,6 @@ body:has(#theme-toggle:checked) .hero-badge strong { color: #18243b; }
         background: rgba(255, 120, 63, .25);
     }
 
-    /* Over text fields */
     .cursor-ring.is-text {
         width: 2px;
         height: 28px;
@@ -1145,1004 +1150,4 @@ body:has(#theme-toggle:checked) .hero-badge strong { color: #18243b; }
 @media (hover: none), (pointer: coarse) {
     .cursor-dot,
     .cursor-ring { display: none; }
-    
-}
-/* =========================================================
-   ANIMATION LAYER: load AFTER style.css
-   <link rel="stylesheet" href="style.css">
-   <link rel="stylesheet" href="animations.css">
-   Everything is disabled automatically for users who prefer
-   reduced motion (see the last section).
-========================================================= */
-
-/* ---------- 1. SCROLL-REVEAL (works with the small JS in index.html) ----------
-   Uses keyframe animations (not transitions) so your existing
-   hover transforms keep working after the reveal finishes.      */
-.js .reveal { opacity: 0; }
-
-.js .reveal.in-view {
-    opacity: 1;
-    animation: revealUp .85s cubic-bezier(.2, .7, .2, 1) backwards;
-    animation-delay: calc(var(--i, 0) * 110ms);
-}
-
-@keyframes revealUp {
-    from { opacity: 0; transform: translateY(38px) scale(.97); }
-    to   { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-/* Section title underline draws itself when revealed */
-.js .section-title.in-view::after {
-    animation: lineGrow .9s .35s cubic-bezier(.2, .7, .2, 1) backwards;
-}
-
-@keyframes lineGrow {
-    from { width: 0; }
-    to   { width: 58px; }
-}
-
-/* ---------- 2. SCROLL PROGRESS BAR (pure CSS, modern browsers) ---------- */
-.header::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -1px;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(90deg, var(--orange), var(--orange-pale));
-    transform: scaleX(0);
-    transform-origin: left;
-    pointer-events: none;
-}
-
-@supports (animation-timeline: scroll()) {
-    .header::after {
-        animation: scrollProgress linear both;
-        animation-timeline: scroll(root);
-    }
-}
-
-@keyframes scrollProgress {
-    to { transform: scaleX(1); }
-}
-
-/* Active nav link (scroll-spy) */
-.nav-link.active { color: var(--orange-light); }
-.nav-link.active::after { width: 100%; }
-
-/* ---------- 3. HERO TEXT: staggered entrance ---------- */
-.hero-content { animation: none; }
-
-.hero-content > * {
-    animation: heroRise .85s cubic-bezier(.2, .7, .2, 1) backwards;
-}
-
-.hero-eyebrow     { animation-delay: .15s; }
-.hero-title       { animation-delay: .30s; }
-.hero-subtitle    { animation-delay: .45s; }
-.hero-description { animation-delay: .60s; }
-.hero-actions     { animation-delay: .75s; }
-
-@keyframes heroRise {
-    from { opacity: 0; transform: translateY(30px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-
-/* Slowly drifting grid behind the hero */
-.hero::before { animation: gridDrift 11.7s linear infinite; }
-
-@keyframes gridDrift {
-    to { background-position: 58px 58px, 58px 58px; }
-}
-
-/* Contact button: soft pulse ring + moving arrow */
-.hero-button { position: relative; }
-
-.hero-button::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border: 2px solid var(--orange);
-    border-radius: inherit;
-    pointer-events: none;
-    animation: btnPulse 1.69s ease-out infinite;
-}
-
-.hero-button:hover::after { animation-play-state: paused; opacity: 0; }
-
-@keyframes btnPulse {
-    0%   { opacity: .75; transform: scale(1); }
-    100% { opacity: 0;   transform: scale(1.18, 1.5); }
-}
-
-/* ---------- 4. PROFILE IMAGE ---------- */
-
-/* 4a. Gentle floating of the whole portrait (keeps your entrance animation) */
-.hero-image {
-    animation:
-        portraitEnter 0.65s .2s ease both,
-        heroFloat 4.55s 0.845s ease-in-out infinite;
-}
-
-@keyframes heroFloat {
-    0%, 100% { transform: translateY(0); }
-    50%      { transform: translateY(-14px); }
-}
-
-/* 4b. A light that travels around the photo border */
-@property --ang {
-    syntax: "<angle>";
-    inherits: false;
-    initial-value: 0deg;
-}
-
-.hero-orbit {
-    position: absolute;
-    inset: -9px;
-    z-index: 3;
-    padding: 2px;
-    border-radius: 20px;
-    pointer-events: none;
-    background: conic-gradient(
-        from var(--ang),
-        transparent 0 62%,
-        var(--orange) 84%,
-        var(--orange-pale) 100%
-    );
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
-    animation: orbitSpin 3.25s linear infinite;
-}
-
-/* blurred copy = glow */
-.hero-orbit.glow {
-    filter: blur(9px);
-    opacity: .75;
-}
-
-@keyframes orbitSpin {
-    to { --ang: 360deg; }
-}
-
-/* 4c. Offset frame breathes slightly */
-.hero-image::before { animation: framePulse 2.93s ease-in-out infinite alternate; }
-
-@keyframes framePulse {
-    from { inset: 17px -16px -16px 17px; }
-    to   { inset: 22px -21px -21px 22px; }
-}
-
-/* 4d. Photo: slow "Ken Burns" zoom + shine sweep */
-.hero-photo-frame { position: relative; }
-
-.hero-photo-frame img { animation: kenBurns 9.1s ease-in-out infinite alternate; }
-
-@keyframes kenBurns {
-    from { scale: 1; }
-    to   { scale: 1.06; }
-}
-
-.hero-photo-frame::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -120%;
-    width: 60%;
-    height: 100%;
-    background: linear-gradient(105deg, transparent, rgba(255, 255, 255, .18), transparent);
-    transform: skewX(-20deg);
-    pointer-events: none;
-    animation: photoShine 3.9s 1.3s ease-in-out infinite;
-}
-
-@keyframes photoShine {
-    0%        { left: -120%; }
-    35%, 100% { left: 170%; }
-}
-
-/* 4e. Badges: a living status dot */
-.hero-badge.top strong::before {
-    content: "";
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    margin-right: 8px;
-    border-radius: 50%;
-    background: #3ddc84;
-    vertical-align: middle;
-    animation: statusDot 1.3s ease-out infinite;
-}
-
-@keyframes statusDot {
-    0%   { box-shadow: 0 0 0 0 rgba(61, 220, 132, .6); }
-    100% { box-shadow: 0 0 0 9px rgba(61, 220, 132, 0); }
-}
-
-/* ---------- 5. SKILLS ---------- */
-.skill-item::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    width: 0;
-    height: 2px;
-    background: var(--orange);
-    transform: translateX(-50%);
-    transition: width .35s ease;
-}
-
-.skill-item:hover::after { width: 70%; }
-
-/* ---------- 6. PROJECT CARDS ---------- */
-.project-card { position: relative; }
-
-/* shine sweep on hover */
-.project-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -90%;
-    width: 50%;
-    height: 100%;
-    z-index: 2;
-    background: linear-gradient(105deg, transparent, rgba(255, 255, 255, .09), transparent);
-    transform: skewX(-18deg);
-    pointer-events: none;
-    transition: left .85s ease;
-}
-
-.project-card:hover::before { left: 150%; }
-
-/* accent bar grows across the top */
-.project-card::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(90deg, var(--orange), var(--orange-pale));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform .5s ease;
-}
-
-.project-card:hover::after { transform: scaleX(1); }
-
-/* subtle 3D tilt (--rx / --ry are set by the script) */
-.project-card:hover {
-    transform: perspective(900px) translateY(-9px)
-               rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
-    transition: transform .15s ease-out, border-color .4s ease, box-shadow .4s ease;
-}
-
-.project-link::after {
-    content: "\2192";
-    margin-left: 8px;
-    transition: transform .25s ease;
-}
-
-.project-link:hover::after { transform: translateX(5px); }
-
-/* ---------- 7. CONTACT FORM ---------- */
-.form-input:focus,
-.form-textarea:focus { transform: translateY(-2px); }
-
-.form-button { position: relative; overflow: hidden; }
-
-.form-button::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -80%;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(105deg, transparent, rgba(255, 255, 255, .35), transparent);
-    transform: skewX(-20deg);
-    transition: left .7s ease;
-}
-
-.form-button:hover::after { left: 140%; }
-
-/* ---------- 8. SMALL SCREENS ---------- */
-@media (max-width: 760px) {
-    .hero-orbit { inset: -7px; border-radius: 18px; }
-}
-
-/* ---------- 9. REDUCED MOTION: switch the extras off ---------- */
-@media (prefers-reduced-motion: reduce) {
-    .header::after,
-    .hero-orbit,
-    .hero-button::after,
-    .hero-photo-frame::after { display: none; }
-
-    .js .reveal { opacity: 1; }
-    .hero-image,
-    .hero-photo-frame img,
-    .hero-image::before { animation: none; }
-}
-/* =========================================================
-   TYPOGRAPHY LAYER: load AFTER style.css and animations.css
-   Display: Sora | Body: Manrope | Labels/Code: JetBrains Mono
-   (fonts are loaded by the <link> tag in index.html <head>)
-========================================================= */
-
-:root {
-    --font-display: "Sora", "Segoe UI", system-ui, sans-serif;
-    --font-body: "Manrope", "Segoe UI", system-ui, sans-serif;
-    --font-mono: "JetBrains Mono", "Cascadia Code", Consolas, monospace;
-}
-
-/* ---------- Base ---------- */
-body {
-    font-family: var(--font-body);
-    font-weight: 400;
-    font-feature-settings: "kern", "liga", "calt";
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-h1, h2, h3 { text-wrap: balance; }
-
-/* ---------- Logo + navigation (techy mono, numbered) ---------- */
-.logo {
-    font-family: var(--font-display);
-    font-weight: 800;
-    letter-spacing: -.06em;
-}
-
-.nav-links { counter-reset: nav; }
-
-.nav-link {
-    font-family: var(--font-mono);
-    font-size: .76rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: .09em;
-}
-
-.nav-link::before {
-    counter-increment: nav;
-    content: "0" counter(nav) ".";
-    margin-right: 6px;
-    color: var(--orange);
-    font-weight: 700;
-    opacity: .85;
-}
-
-.theme-switch {
-    font-family: var(--font-mono);
-    font-size: .7rem;
-    font-weight: 700;
-    letter-spacing: .05em;
-}
-
-/* ---------- Hero ---------- */
-.hero-eyebrow {
-    font-family: var(--font-mono);
-    font-size: .72rem;
-    font-weight: 500;
-    letter-spacing: .2em;
-}
-
-.hero-title {
-    font-family: var(--font-display);
-    font-size: clamp(2.4rem, 4.6vw, 4.2rem);
-    font-weight: 800;
-    line-height: 1.08;
-    letter-spacing: -.045em;
-}
-
-/* Sora has no italic, so keep it upright instead of a faux slant */
-.hero-title em { font-style: italic; }
-
-.hero-title span {
-    filter: drop-shadow(0 0 26px rgba(255, 120, 63, .28));
-}
-
-/* terminal-style subtitle with blinking caret */
-.hero-subtitle {
-    font-family: var(--font-mono);
-    font-size: clamp(1.05rem, 1.7vw, 1.4rem);
-    font-weight: 500;
-    letter-spacing: -.01em;
-}
-
-.hero-subtitle::before {
-    content: "> ";
-    color: var(--orange);
-    font-weight: 700;
-}
-
-.hero-subtitle::after {
-    content: "_";
-    margin-left: 3px;
-    color: var(--orange);
-    animation: caretBlink 0.715s steps(1) infinite;
-}
-
-@keyframes caretBlink {
-    50% { opacity: 0; }
-}
-
-.hero-description {
-    font-family: var(--font-body);
-    font-size: 1.08rem;
-    font-weight: 400;
-    line-height: 1.85;
-}
-
-.hero-button {
-    font-family: var(--font-display);
-    font-size: .92rem;
-    font-weight: 700;
-    letter-spacing: .02em;
-}
-
-.hero-badge {
-    font-family: var(--font-mono);
-    font-size: .64rem;
-    letter-spacing: .02em;
-}
-
-.hero-badge strong {
-    font-family: var(--font-display);
-    font-size: .86rem;
-    font-weight: 700;
-    letter-spacing: -.01em;
-}
-
-/* ---------- Section headings with a small code-style label ---------- */
-.section-title {
-    font-family: var(--font-display);
-    font-size: clamp(1.9rem, 3.6vw, 2.6rem);
-    font-weight: 700;
-    letter-spacing: -.035em;
-}
-
-.section-title::before {
-    display: block;
-    margin-bottom: 10px;
-    color: var(--muted-2);
-    font-family: var(--font-mono);
-    font-size: .7rem;
-    font-weight: 500;
-    letter-spacing: .3em;
-    text-transform: uppercase;
-}
-
-#about    .section-title::before { content: "// 01 \2014  who I am"; }
-#skills   .section-title::before { content: "// 02 \2014  what I use"; }
-#projects .section-title::before { content: "// 03 \2014  what I built"; }
-#contact  .section-title::before { content: "// 04 \2014  let's talk"; }
-
-/* ---------- About / Skills / Projects ---------- */
-.about-description,
-.contact-description {
-    font-family: var(--font-body);
-    font-size: 1.08rem;
-    font-weight: 400;
-    line-height: 1.9;
-}
-
-.skill-item {
-    font-family: var(--font-mono);
-    font-size: .82rem;
-    font-weight: 500;
-    letter-spacing: .03em;
-}
-
-.project-title {
-    font-family: var(--font-display);
-    font-size: 1.22rem;
-    font-weight: 600;
-    letter-spacing: -.02em;
-}
-
-.project-description {
-    font-family: var(--font-body);
-    font-size: .95rem;
-    line-height: 1.75;
-}
-
-.project-link {
-    font-family: var(--font-mono);
-    font-size: .76rem;
-    font-weight: 700;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-}
-
-/* ---------- Contact form ---------- */
-.form-label {
-    font-family: var(--font-mono);
-    font-size: .72rem;
-    font-weight: 500;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-}
-
-.form-input,
-.form-textarea {
-    font-family: var(--font-body);
-    font-size: .98rem;
-    font-weight: 500;
-}
-
-.form-button {
-    font-family: var(--font-display);
-    font-size: .95rem;
-    font-weight: 700;
-    letter-spacing: .03em;
-}
-
-/* ---------- Footer ---------- */
-.footer-text {
-    font-family: var(--font-mono);
-    font-size: .76rem;
-    letter-spacing: .06em;
-}
-
-/* ---------- Responsive adjustments (needed because this file loads last) ---------- */
-@media (max-width: 900px) {
-    .nav-link::before { display: none; }
-}
-
-@media (max-width: 760px) {
-    .nav-link { font-size: .8rem; }
-    .nav-link::before { display: inline; }
-}
-
-@media (max-width: 480px) {
-    .hero-title { font-size: clamp(2.1rem, 9.5vw, 2.8rem); letter-spacing: -.04em; }
-    .hero-eyebrow { font-size: .58rem; letter-spacing: .12em; }
-    .theme-switch { font-size: .62rem; }
-    .hero-badge { font-size: .54rem; }
-    .hero-badge strong { font-size: .66rem; }
-    .section-title::before { font-size: .62rem; letter-spacing: .22em; }
-}
-
-@media (max-width: 360px) {
-    .hero-title { font-size: 2rem; }
-}
-/* Interactive particle network for the page background.
-   - Nodes drift slowly and connect to nearby nodes
-   - The mouse draws glowing links and gently pushes nodes away
-   - Adapts to light/dark theme, pauses when the tab is hidden
-   - Static (no motion) when the visitor prefers reduced motion */
-(() => {
-    const canvas = document.getElementById('bg-canvas');
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const themeBox = document.getElementById('theme-toggle');
-
-    const LINK_DIST = 140;
-    const MOUSE_DIST = 180;
-
-    let w = 0, h = 0, dpr = 1, nodes = [], raf = 0;
-    const mouse = { x: -9999, y: -9999 };
-
-    const rand = (a, b) => a + Math.random() * (b - a);
-
-    function makeNode() {
-        return {
-            x: rand(0, w),
-            y: rand(0, h),
-            vx: rand(-0.22, 0.22),
-            vy: rand(-0.22, 0.22),
-            r: rand(1, 2.4),
-            blue: Math.random() < 0.22
-        };
-    }
-
-    function resize() {
-        dpr = Math.min(window.devicePixelRatio || 1, 2);
-        w = window.innerWidth;
-        h = window.innerHeight;
-        canvas.width = Math.round(w * dpr);
-        canvas.height = Math.round(h * dpr);
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-        const max = w < 700 ? 40 : 95;
-        const count = Math.round(Math.min(max, (w * h) / 15000));
-        while (nodes.length < count) nodes.push(makeNode());
-        nodes.length = count;
-
-        if (reduce) frame(false);
-    }
-
-    function colors() {
-        const light = themeBox && themeBox.checked;
-        return light
-            ? { orange: '232,93,42', blue: '59,91,219', node: 0.7, line: 0.26 }
-            : { orange: '255,154,101', blue: '120,160,255', node: 0.85, line: 0.24 };
-    }
-
-    function frame(update) {
-        ctx.clearRect(0, 0, w, h);
-        const c = colors();
-
-        // move nodes
-        if (update) {
-            for (const n of nodes) {
-                n.x += n.vx;
-                n.y += n.vy;
-
-                if (n.x < -20) n.x = w + 20; else if (n.x > w + 20) n.x = -20;
-                if (n.y < -20) n.y = h + 20; else if (n.y > h + 20) n.y = -20;
-
-                const dx = n.x - mouse.x;
-                const dy = n.y - mouse.y;
-                const d = Math.hypot(dx, dy);
-                if (d < 140 && d > 0.1) {
-                    const push = (1 - d / 140) * 0.9;
-                    n.x += (dx / d) * push;
-                    n.y += (dy / d) * push;
-                }
-            }
-        }
-
-        // links between nodes
-        ctx.lineWidth = 1;
-        for (let i = 0; i < nodes.length; i++) {
-            const a = nodes[i];
-            for (let j = i + 1; j < nodes.length; j++) {
-                const b = nodes[j];
-                const dx = a.x - b.x;
-                if (dx > LINK_DIST || dx < -LINK_DIST) continue;
-                const dy = a.y - b.y;
-                const d = Math.hypot(dx, dy);
-                if (d < LINK_DIST) {
-                    const alpha = (1 - d / LINK_DIST) * c.line;
-                    ctx.strokeStyle = 'rgba(' + c.orange + ',' + alpha.toFixed(3) + ')';
-                    ctx.beginPath();
-                    ctx.moveTo(a.x, a.y);
-                    ctx.lineTo(b.x, b.y);
-                    ctx.stroke();
-                }
-            }
-        }
-
-        // links to the mouse
-        for (const n of nodes) {
-            const d = Math.hypot(n.x - mouse.x, n.y - mouse.y);
-            if (d < MOUSE_DIST) {
-                const alpha = (1 - d / MOUSE_DIST) * 0.55;
-                ctx.strokeStyle = 'rgba(' + c.orange + ',' + alpha.toFixed(3) + ')';
-                ctx.beginPath();
-                ctx.moveTo(n.x, n.y);
-                ctx.lineTo(mouse.x, mouse.y);
-                ctx.stroke();
-            }
-        }
-
-        // nodes (+ soft halo)
-        for (const n of nodes) {
-            const rgb = n.blue ? c.blue : c.orange;
-            ctx.fillStyle = 'rgba(' + rgb + ',' + c.node + ')';
-            ctx.beginPath();
-            ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-            ctx.fill();
-
-            ctx.fillStyle = 'rgba(' + rgb + ',0.12)';
-            ctx.beginPath();
-            ctx.arc(n.x, n.y, n.r * 3.2, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    }
-
-    function loop() {
-        frame(true);
-        raf = requestAnimationFrame(loop);
-    }
-
-    function start() {
-        if (!raf && !reduce) raf = requestAnimationFrame(loop);
-    }
-
-    function stop() {
-        cancelAnimationFrame(raf);
-        raf = 0;
-    }
-
-    addEventListener('resize', resize);
-    addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
-    document.addEventListener('mouseleave', () => { mouse.x = mouse.y = -9999; });
-    document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
-    if (themeBox && reduce) themeBox.addEventListener('change', () => frame(false));
-
-    // slow parallax for the aurora layer
-    if (!reduce) {
-        let ticking = false;
-        addEventListener('scroll', () => {
-            if (ticking) return;
-            ticking = true;
-            requestAnimationFrame(() => {
-                document.documentElement.style.setProperty('--sy', window.scrollY);
-                ticking = false;
-            });
-        }, { passive: true });
-    }
-
-    resize();
-    start();
-})();
-/* =========================================================
-   BACKGROUND LAYER: load AFTER typography.css
-   Layers (back to front): aurora glow > grid > HUD rings >
-   particle network (canvas) > film grain > vignette
-========================================================= */
-
-.bg-fx {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    overflow: hidden;
-    pointer-events: none;
-}
-
-/* ---------- 1. AURORA GLOW ---------- */
-.bg-aurora {
-    position: absolute;
-    inset: -10%;
-    transform: translate3d(0, calc(var(--sy, 0) * -.12px), 0);
-    will-change: transform;
-}
-
-.bg-blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    opacity: .4;
-    mix-blend-mode: screen;
-    will-change: transform;
-}
-
-.blob-1 {
-    width: 58vmax; height: 58vmax;
-    left: -12vmax; top: -14vmax;
-    background: radial-gradient(circle at 30% 30%, #ff783f, transparent 66%);
-    animation: blobA 16.9s ease-in-out infinite alternate;
-}
-
-.blob-2 {
-    width: 52vmax; height: 52vmax;
-    right: -14vmax; top: 10vh;
-    background: radial-gradient(circle at 60% 40%, #3b6bff, transparent 66%);
-    animation: blobB 20.8s ease-in-out infinite alternate;
-}
-
-.blob-3 {
-    width: 46vmax; height: 46vmax;
-    left: 22vw; bottom: -22vmax;
-    background: radial-gradient(circle, #8b3dff, transparent 66%);
-    opacity: .3;
-    animation: blobC 24.7s ease-in-out infinite alternate;
-}
-
-@keyframes blobA { to { transform: translate3d(14vmax, 10vmax, 0) scale(1.15); } }
-@keyframes blobB { to { transform: translate3d(-12vmax, 14vmax, 0) scale(.9); } }
-@keyframes blobC { to { transform: translate3d(-16vmax, -9vmax, 0) scale(1.2); } }
-
-/* ---------- 2. TECH GRID (fine + major lines) ---------- */
-.bg-grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-        linear-gradient(rgba(255, 255, 255, .05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, .05) 1px, transparent 1px);
-    background-size: 64px 64px;
-    -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 40%, #000 25%, transparent 80%);
-    mask-image: radial-gradient(ellipse 85% 75% at 50% 40%, #000 25%, transparent 80%);
-    animation: gridPanFine 6.5s linear infinite;
-}
-
-.bg-grid::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image:
-        linear-gradient(rgba(255, 154, 101, .09) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 154, 101, .09) 1px, transparent 1px);
-    background-size: 256px 256px;
-    animation: gridPanMajor 26s linear infinite;
-}
-
-@keyframes gridPanFine  { to { background-position: 64px 64px, 64px 64px; } }
-@keyframes gridPanMajor { to { background-position: 256px 256px, 256px 256px; } }
-
-/* ---------- 3. HUD RINGS ---------- */
-.bg-ring {
-    position: absolute;
-    aspect-ratio: 1;
-    border-radius: 50%;
-}
-
-.bg-ring::after {
-    content: "";
-    position: absolute;
-    top: -4px;
-    left: 50%;
-    width: 8px;
-    height: 8px;
-    margin-left: -4px;
-    border-radius: 50%;
-}
-
-.ring-1 {
-    width: min(78vmin, 760px);
-    right: -14vmin;
-    top: 6vh;
-    border: 1px solid rgba(255, 154, 101, .18);
-    animation: ringSpin 58.5s linear infinite;
-}
-
-.ring-1::after {
-    background: #ff783f;
-    box-shadow: 0 0 16px 3px rgba(255, 120, 63, .7);
-}
-
-.ring-2 {
-    width: min(54vmin, 520px);
-    left: -12vmin;
-    bottom: 8vh;
-    border: 1px dashed rgba(120, 150, 255, .24);
-    animation: ringSpin 45.5s linear infinite reverse;
-}
-
-.ring-2::after {
-    background: #6f95ff;
-    box-shadow: 0 0 16px 3px rgba(111, 149, 255, .7);
-}
-
-@keyframes ringSpin { to { transform: rotate(360deg); } }
-
-/* ---------- 4. CANVAS (particle network) ---------- */
-#bg-canvas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-}
-
-/* ---------- 5. FILM GRAIN + VIGNETTE ---------- */
-.bg-noise {
-    position: absolute;
-    inset: 0;
-    opacity: .07;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-}
-
-.bg-vignette {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at center, transparent 48%, rgba(5, 8, 18, .6) 100%);
-}
-
-/* ---------- 6. SECTIONS BECOME TRANSPARENT SO THE BACKGROUND SHOWS ---------- */
-.hero {
-    background:
-        radial-gradient(circle at 76% 50%, rgba(255, 120, 63, .13), transparent 42%),
-        radial-gradient(circle at 8% 15%, rgba(59, 107, 255, .09), transparent 38%);
-}
-
-.hero::before { display: none; }   /* old grid replaced by the global one */
-
-.about    { background: linear-gradient(180deg, rgba(11, 16, 32, .5), rgba(17, 26, 45, .32)); }
-.skills   { background: linear-gradient(180deg, rgba(13, 21, 39, .3), rgba(13, 21, 39, .55)); }
-.projects { background: transparent; }
-.contact  { background: linear-gradient(180deg, rgba(17, 26, 45, .3), rgba(11, 16, 32, .65)); }
-.footer   { background: rgba(8, 13, 25, .82); }
-
-/* glowing divider line + diamond at the top of each section */
-.about::before,
-.skills::before,
-.projects::before,
-.contact::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 10%;
-    right: 10%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 154, 101, .5), transparent);
-}
-
-.about::after,
-.skills::after,
-.projects::after,
-.contact::after {
-    content: "";
-    position: absolute;
-    top: -4px;
-    left: 50%;
-    width: 8px;
-    height: 8px;
-    margin-left: -4px;
-    background: var(--orange);
-    box-shadow: 0 0 14px 2px rgba(255, 120, 63, .7);
-    transform: rotate(45deg);
-}
-
-/* ---------- 7. GLASS CARDS ---------- */
-.project-card {
-    background: linear-gradient(145deg, rgba(26, 41, 66, .72), rgba(18, 29, 50, .55));
-    -webkit-backdrop-filter: blur(14px) saturate(140%);
-    backdrop-filter: blur(14px) saturate(140%);
-}
-
-.contact-form {
-    background: linear-gradient(145deg, rgba(255, 120, 63, .08), rgba(23, 35, 58, .6));
-    -webkit-backdrop-filter: blur(14px) saturate(140%);
-    backdrop-filter: blur(14px) saturate(140%);
-}
-
-.skill-item {
-    background: linear-gradient(145deg, rgba(28, 41, 66, .75), rgba(23, 35, 58, .55));
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
-}
-
-/* ---------- 8. LIGHT MODE ---------- */
-body:has(#theme-toggle:checked) .bg-blob {
-    mix-blend-mode: normal;
-    opacity: .26;
-}
-
-body:has(#theme-toggle:checked) .blob-3 { opacity: .2; }
-
-body:has(#theme-toggle:checked) .bg-grid {
-    background-image:
-        linear-gradient(rgba(24, 36, 59, .06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(24, 36, 59, .06) 1px, transparent 1px);
-}
-
-body:has(#theme-toggle:checked) .bg-grid::after {
-    background-image:
-        linear-gradient(rgba(232, 93, 42, .12) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(232, 93, 42, .12) 1px, transparent 1px);
-}
-
-body:has(#theme-toggle:checked) .bg-noise { mix-blend-mode: multiply; opacity: .05; }
-body:has(#theme-toggle:checked) .bg-vignette {
-    background: radial-gradient(ellipse at center, transparent 55%, rgba(24, 36, 59, .09) 100%);
-}
-
-body:has(#theme-toggle:checked) .hero {
-    background:
-        radial-gradient(circle at 76% 50%, rgba(255, 120, 63, .12), transparent 42%),
-        radial-gradient(circle at 8% 15%, rgba(81, 111, 180, .1), transparent 38%);
-}
-
-body:has(#theme-toggle:checked) .about    { background: rgba(255, 255, 255, .5); }
-body:has(#theme-toggle:checked) .skills   { background: rgba(238, 241, 247, .55); }
-body:has(#theme-toggle:checked) .projects { background: rgba(255, 255, 255, .3); }
-body:has(#theme-toggle:checked) .contact  { background: rgba(238, 241, 247, .6); }
-body:has(#theme-toggle:checked) .footer   { background: rgba(255, 255, 255, .8); }
-
-body:has(#theme-toggle:checked) .project-card {
-    background: rgba(255, 255, 255, .7);
-}
-
-body:has(#theme-toggle:checked) .contact-form {
-    background: linear-gradient(145deg, rgba(255, 255, 255, .75), rgba(255, 244, 237, .7));
-}
-
-body:has(#theme-toggle:checked) .skill-item {
-    background: linear-gradient(145deg, rgba(255, 255, 255, .85), rgba(243, 245, 249, .7));
-}
-
-/* ---------- 9. SMALL SCREENS ---------- */
-@media (max-width: 760px) {
-    .bg-blob { filter: blur(60px); }
-    .ring-1 { right: -30vmin; }
-    .ring-2 { left: -26vmin; }
-    .project-card,
-    .contact-form,
-    .skill-item { -webkit-backdrop-filter: none; backdrop-filter: none; }
 }
