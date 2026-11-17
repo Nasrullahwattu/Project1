@@ -1,0 +1,355 @@
+/* =========================================================
+   PROCESS SECTION: "How I Deliver"
+   Load AFTER background.css:
+   <link rel="stylesheet" href="process.css">
+   Uses your existing colour tokens, fonts and reveal animation,
+   so it follows dark/light mode automatically.
+========================================================= */
+
+/* ---------- 0. Renumber the code-style labels (section added between Skills and Projects) ---------- */
+#process  .section-title::before { content: "// 03 \2014  how I work"; }
+#projects .section-title::before { content: "// 04 \2014  what I built"; }
+#education .section-title::before { content: "// 05 \2014  what I study"; }
+#contact  .section-title::before { content: "// 06 \2014  let's talk"; }
+
+/* ---------- 1. SECTION ---------- */
+.process {
+    text-align: center;
+    background: linear-gradient(180deg, rgba(13, 21, 39, .35), rgba(11, 16, 32, .55));
+}
+
+/* glowing divider line + diamond, same as the other sections */
+.process::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 154, 101, .5), transparent);
+}
+
+.process::after {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    margin-left: -4px;
+    background: var(--orange);
+    box-shadow: 0 0 14px 2px rgba(255, 120, 63, .7);
+    transform: rotate(45deg);
+}
+
+.process-intro {
+    max-width: 620px;
+    margin: -18px auto 48px;
+    color: var(--muted);
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    line-height: 1.85;
+}
+
+/* ---------- 2. GRID ---------- */
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* ---------- 3. CARD ---------- */
+.process-card {
+    --ghost: rgba(255, 154, 101, .09);
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+    padding: 26px 24px 24px;
+    border: 1px solid var(--line);
+    border-radius: 17px;
+    background: linear-gradient(145deg, rgba(26, 41, 66, .72), rgba(18, 29, 50, .55));
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    backdrop-filter: blur(14px) saturate(140%);
+    text-align: left;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, .16);
+    transition: transform .4s ease, border-color .4s ease, box-shadow .4s ease;
+}
+
+/* 3D tilt (--rx / --ry are set by the script in index.html) */
+.process-card:hover {
+    transform: perspective(900px) translateY(-9px)
+               rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    border-color: rgba(255, 120, 63, .65);
+    box-shadow: 0 20px 45px rgba(255, 120, 63, .14);
+    transition: transform .15s ease-out, border-color .4s ease, box-shadow .4s ease;
+}
+
+/* shine sweep on hover */
+.process-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -90%;
+    width: 50%;
+    height: 100%;
+    z-index: 3;
+    background: linear-gradient(105deg, transparent, rgba(255, 255, 255, .09), transparent);
+    transform: skewX(-18deg);
+    pointer-events: none;
+    transition: left .85s ease;
+}
+
+.process-card:hover::before { left: 150%; }
+
+/* accent bar grows across the top */
+.process-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    z-index: 3;
+    background: linear-gradient(90deg, var(--orange), var(--orange-pale));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .5s ease;
+}
+
+.process-card:hover::after { transform: scaleX(1); }
+
+/* big ghost number in the corner */
+.process-num {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    z-index: 0;
+    color: var(--ghost);
+    font-family: var(--font-display);
+    font-size: 4.8rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -.05em;
+    pointer-events: none;
+    user-select: none;
+    transition: transform .5s ease, color .5s ease;
+}
+
+.process-card:hover .process-num {
+    color: rgba(255, 120, 63, .2);
+    transform: translateY(-5px) scale(1.06);
+}
+
+.process-head,
+.process-title,
+.process-desc,
+.process-bar {
+    position: relative;
+    z-index: 1;
+}
+
+.process-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 22px;
+}
+
+/* ---------- 4. ICON ---------- */
+.process-icon {
+    position: relative;
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    width: 54px;
+    height: 54px;
+    border: 1px solid rgba(255, 120, 63, .4);
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(255, 120, 63, .22), rgba(255, 154, 101, .06));
+    color: var(--orange-light);
+    transition: transform .35s ease, background .35s ease, color .35s ease, box-shadow .35s ease;
+}
+
+.process-icon svg {
+    width: 26px;
+    height: 26px;
+}
+
+/* soft pulse ring */
+.process-icon::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1.5px solid var(--orange);
+    border-radius: inherit;
+    opacity: 0;
+    pointer-events: none;
+    animation: processIconPulse 2.6s ease-out infinite;
+    animation-delay: calc(var(--i, 0) * .4s);
+}
+
+@keyframes processIconPulse {
+    0%   { opacity: .6; transform: scale(1); }
+    100% { opacity: 0;  transform: scale(1.5); }
+}
+
+.process-card:hover .process-icon {
+    transform: rotate(-6deg) scale(1.08);
+    background: linear-gradient(135deg, var(--orange), var(--orange-light));
+    color: #17100d;
+    box-shadow: var(--glow);
+}
+
+.process-step {
+    color: var(--orange);
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+}
+
+/* ---------- 5. TEXT ---------- */
+.process-title {
+    margin-bottom: 8px;
+    color: var(--text);
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: -.02em;
+    transition: color .3s ease;
+}
+
+.process-card:hover .process-title { color: var(--orange-light); }
+
+.process-desc {
+    margin-bottom: 20px;
+    color: var(--muted);
+    font-family: var(--font-body);
+    font-size: .95rem;
+    line-height: 1.7;
+}
+
+.process-bar {
+    display: block;
+    width: 42px;
+    height: 3px;
+    border-radius: 99px;
+    background: linear-gradient(90deg, var(--orange), var(--orange-pale));
+    transition: width .55s cubic-bezier(.2, .7, .2, 1);
+}
+
+.process-card:hover .process-bar { width: 100%; }
+
+/* ---------- 6. LIGHT MODE ---------- */
+body:has(#theme-toggle:checked) .process { background: rgba(255, 255, 255, .42); }
+
+body:has(#theme-toggle:checked) .process-card {
+    --ghost: rgba(232, 93, 42, .1);
+    background: rgba(255, 255, 255, .75);
+    border-color: #e2e6ef;
+    box-shadow: 0 10px 28px rgba(24, 36, 59, .06);
+}
+
+body:has(#theme-toggle:checked) .process-card:hover {
+    border-color: rgba(232, 93, 42, .55);
+    box-shadow: 0 20px 45px rgba(232, 93, 42, .14);
+}
+
+body:has(#theme-toggle:checked) .process-card:hover .process-num { color: rgba(232, 93, 42, .18); }
+
+body:has(#theme-toggle:checked) .process-icon {
+    background: linear-gradient(135deg, #fff0e7, #ffe3d3);
+    border-color: rgba(232, 93, 42, .35);
+}
+
+body:has(#theme-toggle:checked) .process-card:hover .process-icon {
+    background: linear-gradient(135deg, var(--orange), var(--orange-light));
+    color: #fff;
+}
+
+/* ---------- 7. RESPONSIVE ---------- */
+@media (max-width: 980px) {
+    .process-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 760px) {
+    .process-card {
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+    }
+}
+
+@media (max-width: 620px) {
+    .process-grid {
+        grid-template-columns: 1fr;
+        max-width: 520px;
+    }
+    .process-intro { font-size: .98rem; margin-bottom: 38px; }
+}
+
+@media (max-width: 480px) {
+    .process-card { padding: 22px 20px 20px; }
+    .process-num { font-size: 4rem; }
+    .process-icon { width: 48px; height: 48px; }
+    .process-title { font-size: 1.2rem; }
+}
+
+/* ---------- 7b. EDUCATION SECTION (cards reuse .process-card) ---------- */
+.education {
+    text-align: center;
+    background: linear-gradient(180deg, rgba(11, 16, 32, .45), rgba(17, 26, 45, .35));
+}
+
+.education::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 154, 101, .5), transparent);
+}
+
+.education::after {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    margin-left: -4px;
+    background: var(--orange);
+    box-shadow: 0 0 14px 2px rgba(255, 120, 63, .7);
+    transform: rotate(45deg);
+}
+
+.edu-place {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 12px;
+    color: var(--orange-pale);
+    font-family: var(--font-mono);
+    font-size: .76rem;
+    font-weight: 500;
+    letter-spacing: .03em;
+    line-height: 1.6;
+}
+
+body:has(#theme-toggle:checked) .education { background: rgba(238, 241, 247, .55); }
+
+/* ---------- 7c. NAVBAR: room for the extra "Education" link ---------- */
+@media (min-width: 761px) and (max-width: 1100px) {
+    .navbar { padding-inline: 4%; gap: 14px; }
+    .nav-links { gap: 14px; }
+    .nav-link::before { display: none; }
+}
+
+/* ---------- 8. REDUCED MOTION ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .process-icon::after,
+    .process-card::before { display: none; }
+    .process-card:hover { transform: none; }
+}
